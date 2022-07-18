@@ -1,0 +1,15 @@
+.search-position {
+    position: absolute;
+    left: 160px;
+
+}
+
+.search-part-style {
+    box-shadow: 2px 4px 4px 4px rgb(214, 212, 212);
+    /* background-color: rgb(255, 255, 255); */
+}
+
+.image-textposition {
+    position: absolute;
+    top: 100px;
+}
