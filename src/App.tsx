@@ -14,13 +14,15 @@ import Profile from "./components/Profile";
 import Footer from "./components/Footer";
 import PersonalInformation from "./components/PersonalInformation";
 import Updatepassword from "./components/Updatepassword";
+import HostStalls from "./components/HostStalls";
+import GetstartedHoststall from "./components/GetstartedHoststall";
 
 function App() {
   return (
     <div className="App">
       {/* <Horsebnbindex/> */}
       {/* <Modals /> */}
-      <Header />
+      {/* <Header /> */}
       {/* <SearchWithoutMap /> */}
       {/* <PostDetails /> */}
       {/* <Paymentconfirm /> */}
@@ -32,8 +34,10 @@ function App() {
       {/* <UpcomingBookingDetails /> */}
       {/* <Profile /> */}
       {/* <PersonalInformation /> */}
-      <Updatepassword />
+      {/* <Updatepassword / */}
       {/* <Footer /> */}
+      {/* <HostStalls/> */}
+      <GetstartedHoststall/>
     </div>
   );
 }

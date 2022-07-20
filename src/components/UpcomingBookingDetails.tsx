@@ -6,7 +6,7 @@ import identity from "../images/other/identity.png";
 import superhost from "../images/other/superhost.png";
 import call from "../images/other/call.png";
 import "./horsebnb.css";
-import { ClassNames } from "@emotion/react";
+// import { ClassNames } from "@emotion/react";
 
 function UpcomingBookingDetails() {
   return (
