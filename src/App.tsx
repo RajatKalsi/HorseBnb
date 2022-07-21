@@ -15,14 +15,23 @@ import Footer from "./components/Footer";
 import PersonalInformation from "./components/PersonalInformation";
 import Updatepassword from "./components/Updatepassword";
 import HostStalls from "./components/HostStalls";
-import GetstartedHoststall from "./components/GetstartedHoststall";
+import CreateStallStep1 from "./components/CreateStallStep1";
+import CreateStallStep2 from "./components/CreateStallStep2";
+import CreateStallimage from "./components/CreateStallimage";
+import CreateStallStep3 from "./components/CreateStallStep3";
+import CreateStallStep4 from "./components/CreateStallStep4";
+import CreateStallStep5 from "./components/CreateStallStep5";
+import CreateStallAmenities from "./components/CreateStallAmenities";
+import CreateStallStep6 from "./components/CreateStallStep6";
+import CreateStallStep7 from "./components/CreateStallStep7";
+import CreateStallStep8 from "./components/CreateStallStep8";
 
 function App() {
   return (
     <div className="App">
-      {/* <Horsebnbindex/> */}
+      {/* <Horsebnbindex /> */}
       {/* <Modals /> */}
-      {/* <Header /> */}
+      <Header />
       {/* <SearchWithoutMap /> */}
       {/* <PostDetails /> */}
       {/* <Paymentconfirm /> */}
@@ -37,7 +46,16 @@ function App() {
       {/* <Updatepassword / */}
       {/* <Footer /> */}
       {/* <HostStalls/> */}
-      <GetstartedHoststall/>
+      {/* <CreateStallStep1 /> */}
+      {/* <CreateStallStep2 /> */}
+      {/* <CreateStallimage /> */}
+      {/* <CreateStallStep3 /> */}
+      {/* <CreateStallStep4 /> */}
+      {/* <CreateStallStep5 /> */}
+      {/* <CreateStallAmenities /> */}
+      {/* <CreateStallStep6 /> */}
+      {/* <CreateStallStep7 /> */}
+      <CreateStallStep8 />
     </div>
   );
 }

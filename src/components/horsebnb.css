@@ -40,6 +40,7 @@ input.border-0.rounded-pill.p-1 {
 .font {
     font-size: 22px;
 }
+
 .position1 {
     position: absolute;
     left: 120px;
@@ -88,4 +89,13 @@ input.border-0.rounded-pill.p-1 {
     /* left: 120px; */
     bottom: 3px;
     right: 180px
+}
+
+.background-Imagecolor {
+    background-color: rgb(215, 205, 205);
+
+}
+
+.image-border {
+    border-style: dotted
 }

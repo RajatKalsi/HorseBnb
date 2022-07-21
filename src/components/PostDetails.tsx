@@ -191,7 +191,7 @@ function PostDetails() {
                   <input type="date" />
                 </div>
                 <div className="col-6   border border-1 p-2">
-                  <input type="date" />
+                  <input type="date" placeholder="sfsg" />
                 </div>
               </div>
               {/* <hr /> */}
