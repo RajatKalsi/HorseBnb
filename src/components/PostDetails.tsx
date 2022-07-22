@@ -4,9 +4,6 @@ import sparkling from "../images/other/sparklingclean.png";
 import entirebarn from "../images/other/entirebarn.png";
 import cancellationpolicy from "../images/other/cancellationpolicy.png";
 import star from "../images/other/star.png";
-// import GoogleMapReact from 'google-map-react';
-// import Calendar from "react-calendar";
-// import Calendar from "react-material-ui-calendar";
 import "react-calendar/dist/Calendar.css";
 import Cardscomponent from "./Cardscomponent";
 
@@ -167,7 +164,9 @@ function PostDetails() {
           </p>
           <div className="text-start">
             {/* <Calendar /> */}
-            <input type="date" />
+            <form>
+              <input type="date" placeholder="date" />
+            </form>
           </div>
           <hr />
         </div>
@@ -188,7 +187,7 @@ function PostDetails() {
             <div className="row mt-3">
               <div className="row mb-0">
                 <div className="col-6  border border-1 p-2">
-                  <input type="date" />
+                  <input type="date" placeholder="date" />
                 </div>
                 <div className="col-6   border border-1 p-2">
                   <input type="date" placeholder="sfsg" />

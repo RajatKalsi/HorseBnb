@@ -50,15 +50,12 @@ function CreateStallStep3() {
             </select>
             <hr className="mt-5" />
             <div className="row mt-2">
-              {/* <div className="row"> */}
-
               <div className="col-3 me-auto">
                 <i className="bi bi-chevron-left"></i>Back
               </div>
               <div className="col-3 ms-auto">
                 <button className="btn btn-success border-0">Next</button>
               </div>
-              {/* </div> */}
             </div>
           </div>
 

@@ -1,3 +1,4 @@
+import "./index.scss";
 import React from "react";
 import logo from "./logo.svg";
 import "./App.css";
@@ -30,13 +31,18 @@ import CreateStallsStep10 from "./components/CreateStallsStep10";
 // import CreateStallsStep11 from "./components/CreateStallsStep11";
 import CreateStallStep11 from "./components/CreateStallStep11";
 import CreateStallStep12 from "./components/CreateStallStep12";
+import CreateStallStep13 from "./components/CreateStallStep13";
+import CreateStallStep14 from "./components/CreateStallStep14";
+import CreateStallStep15 from "./components/CreateStallStep15";
+import Extrafile from "./components/Extrafile";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
 function App() {
   return (
     <div className="App">
       {/* <Horsebnbindex /> */}
       {/* <Modals /> */}
-      <Header />
+      {/* <Header /> */}
       {/* <SearchWithoutMap /> */}
       {/* <PostDetails /> */}
       {/* <Paymentconfirm /> */}
@@ -50,7 +56,7 @@ function App() {
       {/* <PersonalInformation /> */}
       {/* <Updatepassword / */}
       {/* <Footer /> */}
-      {/* <HostStalls/> */}
+      {/* <HostStalls /> */}
       {/* <CreateStallStep1 /> */}
       {/* <CreateStallStep2 /> */}
       {/* <CreateStallimage /> */}
@@ -64,7 +70,18 @@ function App() {
       {/* <CreateStallStep9/> */}
       {/* <CreateStallsStep10/> */}
       {/* <CreateStallStep11/> */}
-      <CreateStallStep12/>
+      {/* <CreateStallStep12 /> */}
+      {/* <CreateStallStep13 /> */}
+      {/* <CreateStallStep14 /> */}
+      {/* <CreateStallStep15 /> */}
+      {/* <Extrafile /> */}
+      <Router>
+        <Routes>
+          <Route path="/" element={<Header />} />
+          <Route path="/hoststalls" element={<HostStalls />} />
+          <Route path="/createstallstep1" element={<CreateStallStep1 />} />
+        </Routes>
+      </Router>
     </div>
   );
 }

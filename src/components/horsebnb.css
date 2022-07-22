@@ -20,6 +20,12 @@
 
 .search-position {
     position: absolute;
+    left: 120px
+}
+
+.search-position1 {
+    position: absolute;
+    left: 160px
 }
 
 /* .search-border:hover,
@@ -98,4 +104,21 @@ input.border-0.rounded-pill.p-1 {
 
 .image-border {
     border-style: dotted
+}
+
+.loginmodalDetail {
+    position: absolute;
+    right: 0px;
+    /* left: 1100px; */
+    top: 50px;
+}
+
+.decoration-text {
+    text-decoration: none;
+    color: #000;
+}
+
+.decoration {
+    text-decoration: none;
+    list-style: none;
 }

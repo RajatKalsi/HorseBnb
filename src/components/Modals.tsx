@@ -1,16 +1,8 @@
 import React from "react";
 
-function Modals() {
+const SignUpModal = () => {
   return (
-    <div>
-      {/* Sign-Up Modal  */}
-      <button
-        type="button"
-        className="btn btn-primary"
-        data-bs-toggle="modal"
-        data-bs-target="#myModal">
-        Open modal
-      </button>
+    <>
       <div className="modal" id="myModal">
         <div className="modal-dialog">
           <div className="modal-content">
@@ -25,46 +17,64 @@ function Modals() {
             </div>
             <div className="modal-body">
               <div className="me-3 ms-3">
-                <input
-                  type="text"
-                  className="w-100 mt-3"
-                  placeholder="FirstName"
-                />
-                <input
-                  type="text"
-                  className="w-100 mt-3"
-                  placeholder="LastName"
-                />
-                <input type="text" className="w-100 mt-3" placeholder="Email" />
-                <div className="col-auto mt-3">
-                  <div className="input-group mb-2">
-                    <div className="input-group-prepend">
-                      <div className="input-group-text">@</div>
+                <form>
+                  <input
+                    type="text"
+                    className="w-100 mt-3 form-control"
+                    placeholder="FirstName"
+                    required
+                  />
+                  <input
+                    type="text"
+                    className="w-100 mt-3 form-control"
+                    placeholder="LastName"
+                    required
+                  />
+                  <input
+                    type="text"
+                    className="w-100 mt-3 form-control"
+                    placeholder="Email"
+                    required
+                  />
+                  <div className="col-auto mt-3">
+                    <div className="input-group mb-2">
+                      <div className="input-group-prepend">
+                        <div className="input-group-text">@</div>
+                      </div>
+                      <input
+                        type="text"
+                        className="form-control"
+                        id="inlineFormInputGroup"
+                        placeholder="Enter Phone Number"
+                        required
+                      />
                     </div>
-                    <input
-                      type="text"
-                      className="form-control"
-                      id="inlineFormInputGroup"
-                      placeholder="Enter Phone Number"
-                    />
                   </div>
-                </div>
-                <input
-                  type="password"
-                  className="w-100 mt-2"
-                  placeholder="password"
-                />
+                  <input
+                    type="password"
+                    className="w-100 mt-2 form-control"
+                    placeholder="password"
+                    required
+                  />
+                  <div className="text-start ms-2 mt-2 mb-1">
+                    <input
+                      type="checkbox"
+                      className=""
+                      placeholder="gfh"
+                      required
+                    />
+                    <span className="ms-1"> Agree to</span>{" "}
+                    <span className="text-danger">Terms </span>and{" "}
+                    <span className="text-danger">Conditions</span>
+                  </div>
+                  <input
+                    className="btn btn-danger mt-1  w-100"
+                    value="Sign Up"
+                    type="submit"
+                  />
 
-                <div className="text-start ms-3 mt-3">
-                  <input type="checkbox" className="" />
-                  <span className="ms-1"> Agree to</span>{" "}
-                  <span className="text-danger">Terms</span>and{" "}
-                  <span className="text-danger">Conditions</span>
-                </div>
-                <button className="btn btn-danger mt-1  w-100">Sign Up</button>
-                <div className="mt-1">
-                  -------------------------or------------------------
-                </div>
+                  <hr />
+                </form>
                 <div>
                   <button className="btn btn-danger w-100 mt-1">
                     <i className="bi bi-facebook me-5"></i>
@@ -90,17 +100,12 @@ function Modals() {
           </div>
         </div>
       </div>
-
-      {/* Login modal */}
-
-      <button
-        type="button"
-        className="btn btn-primary"
-        data-bs-toggle="modal"
-        data-bs-target="#myModal1">
-        open modal 1
-      </button>
-
+    </>
+  );
+};
+const LoginModal = () => {
+  return (
+    <>
       <div className="modal" id="myModal1">
         <div className="modal-dialog">
           <div className="modal-content">
@@ -117,24 +122,39 @@ function Modals() {
             </div>
             <div className="modal-body">
               <div className="me-3 ms-3">
-                <input type="text" className="w-100 mt-3" placeholder="Email" />
-                <input
-                  type="password"
-                  className="w-100 mt-4"
-                  placeholder="password"
-                />
-                <div className="row mt-3 ">
-                  <div className="col-5 text-start">
-                    <input type="checkbox" />
-                    <span className="ms-3">Remember me</span>
+                <form>
+                  <input
+                    type="text"
+                    className="w-100 mt-3 form-control"
+                    placeholder="Email"
+                    required
+                  />
+                  <input
+                    type="password"
+                    className="w-100 mt-4 form-control"
+                    placeholder="password"
+                    required
+                  />
+                  <div className="row mt-3 ">
+                    <div className="col-5 text-start">
+                      <input
+                        type="checkbox"
+                        className=""
+                        placeholder="fg"
+                        required
+                      />
+                      <span className="ms-3">Remember me</span>
+                    </div>
+                    <div className="col-4 ms-auto">
+                      <span className="text-danger">forgot password</span>
+                    </div>
                   </div>
-                  <div className="col-4 ms-auto">
-                    <span className="text-danger">forgot password</span>
-                  </div>
-                </div>
-                <button className="w-100 bg-danger border-0 mt-3 p-2 text-white">
-                  Log In
-                </button>
+                  <input
+                    type="Submit"
+                    className="w-100 bg-danger border-0 mt-3 p-2 text-white"
+                    value="Login"
+                  />
+                </form>
                 <hr />
                 <div>
                   <button className="btn btn-danger w-100 mt-1">
@@ -157,8 +177,10 @@ function Modals() {
           </div>
         </div>
       </div>
-    </div>
+    </>
   );
-}
-
-export default Modals;
+};
+export default {
+  SignUpModal,
+  LoginModal,
+};
