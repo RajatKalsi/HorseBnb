@@ -25,6 +25,11 @@ import CreateStallAmenities from "./components/CreateStallAmenities";
 import CreateStallStep6 from "./components/CreateStallStep6";
 import CreateStallStep7 from "./components/CreateStallStep7";
 import CreateStallStep8 from "./components/CreateStallStep8";
+import CreateStallStep9 from "./components/CreateStallStep9";
+import CreateStallsStep10 from "./components/CreateStallsStep10";
+// import CreateStallsStep11 from "./components/CreateStallsStep11";
+import CreateStallStep11 from "./components/CreateStallStep11";
+import CreateStallStep12 from "./components/CreateStallStep12";
 
 function App() {
   return (
@@ -55,7 +60,11 @@ function App() {
       {/* <CreateStallAmenities /> */}
       {/* <CreateStallStep6 /> */}
       {/* <CreateStallStep7 /> */}
-      <CreateStallStep8 />
+      {/* <CreateStallStep8 /> */}
+      {/* <CreateStallStep9/> */}
+      {/* <CreateStallsStep10/> */}
+      {/* <CreateStallStep11/> */}
+      <CreateStallStep12/>
     </div>
   );
 }
