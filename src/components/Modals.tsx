@@ -1,6 +1,43 @@
-import React from "react";
+import React, { useState } from "react";
+import henceforthApi from "./utils/henceforthApi";
+import axios from "axios";
+import Loading from "./Loading";
+import AfterloginHeader from "./AfterloginHeader";
+import Horsebnbindex from "./Horcebnbindex";
 
 const SignUpModal = () => {
+  const [signup, setSignup] = useState({
+    firstName: "",
+    lastName: "",
+    email: "",
+    password: "",
+    protectedData: {
+      phoneNumber: "",
+    },
+    deviceType: "0",
+    publicData: {
+      country_code: "91",
+    },
+  });
+  const [loading, setLoading] = useState(false);
+  const InputChange = (e: any) => {
+    let name = e.target.name;
+    let value = e.target.value;
+
+    setSignup({
+      ...signup,
+      [name]: value,
+    });
+  };
+  const handleSignUp = async () => {
+    setLoading(true);
+    try {
+      let res = await henceforthApi.Auth.signup(signup);
+      setLoading(false);
+    } catch {
+      console.log("error");
+    }
+  };
   return (
     <>
       <div className="modal" id="myModal">
@@ -17,21 +54,34 @@ const SignUpModal = () => {
             </div>
             <div className="modal-body">
               <div className="me-3 ms-3">
-                <form>
+                <form
+                  onSubmit={(e) => {
+                    e.preventDefault();
+                    handleSignUp();
+                  }}>
                   <input
                     type="text"
+                    onChange={InputChange}
+                    name="firstName"
+                    value={signup.firstName}
                     className="w-100 mt-3 form-control"
                     placeholder="FirstName"
                     required
                   />
                   <input
                     type="text"
+                    onChange={InputChange}
+                    name="lastName"
+                    value={signup.lastName}
                     className="w-100 mt-3 form-control"
                     placeholder="LastName"
                     required
                   />
                   <input
                     type="text"
+                    onChange={InputChange}
+                    name="email"
+                    value={signup.email}
                     className="w-100 mt-3 form-control"
                     placeholder="Email"
                     required
@@ -44,7 +94,10 @@ const SignUpModal = () => {
                       <input
                         type="text"
                         className="form-control"
-                        id="inlineFormInputGroup"
+                        // id="inlineFormInputGroup"
+                        name="protectedData"
+                        value={signup.protectedData.phoneNumber}
+                        onChange={InputChange}
                         placeholder="Enter Phone Number"
                         required
                       />
@@ -54,6 +107,9 @@ const SignUpModal = () => {
                     type="password"
                     className="w-100 mt-2 form-control"
                     placeholder="password"
+                    name="password"
+                    value={signup.password}
+                    onChange={InputChange}
                     required
                   />
                   <div className="text-start ms-2 mt-2 mb-1">
@@ -67,11 +123,9 @@ const SignUpModal = () => {
                     <span className="text-danger">Terms </span>and{" "}
                     <span className="text-danger">Conditions</span>
                   </div>
-                  <input
-                    className="btn btn-danger mt-1  w-100"
-                    value="Sign Up"
-                    type="submit"
-                  />
+                  <button className="btn btn-danger mt-1 w-100" type="submit">
+                    {loading ? <Loading /> : "Sign Up"}
+                  </button>
 
                   <hr />
                 </form>
@@ -104,6 +158,37 @@ const SignUpModal = () => {
   );
 };
 const LoginModal = () => {
+  const [login, setLogin] = useState({
+    username: "",
+    password: "",
+  });
+  const [loading, setLoading] = useState(false);
+  const LogininputChange = (e: any) => {
+    let name = e.target.name;
+    let value = e.target.value;
+
+    setLogin({
+      ...login,
+      [name]: value,
+    });
+  };
+
+  const handleLogin = async () => {
+    try {
+      setLoading(true);
+      let res = await henceforthApi.Auth.login(login);
+      setLoading(false);
+      // console.log(res.data.token);
+      localStorage.setItem("token", res.data.token);
+      if (localStorage.getItem("token")) {
+        <AfterloginHeader />;
+      } else {
+        <Horsebnbindex />;
+      }
+    } catch {
+      setLoading(false);
+    }
+  };
   return (
     <>
       <div className="modal" id="myModal1">
@@ -122,17 +207,27 @@ const LoginModal = () => {
             </div>
             <div className="modal-body">
               <div className="me-3 ms-3">
-                <form>
+                <form
+                  onSubmit={(e) => {
+                    e.preventDefault();
+                    handleLogin();
+                  }}>
                   <input
                     type="text"
                     className="w-100 mt-3 form-control"
                     placeholder="Email"
+                    name="username"
+                    onChange={LogininputChange}
+                    value={login.username}
                     required
                   />
                   <input
                     type="password"
                     className="w-100 mt-4 form-control"
                     placeholder="password"
+                    name="password"
+                    value={login.password}
+                    onChange={LogininputChange}
                     required
                   />
                   <div className="row mt-3 ">
@@ -149,11 +244,11 @@ const LoginModal = () => {
                       <span className="text-danger">forgot password</span>
                     </div>
                   </div>
-                  <input
-                    type="Submit"
-                    className="w-100 bg-danger border-0 mt-3 p-2 text-white"
-                    value="Login"
-                  />
+                  <button
+                    className=" btn btn-danger w-100 bg-danger border-0 mt-3 p-2 text-white"
+                    type="submit">
+                    {loading ? <Loading /> : "Log in"}
+                  </button>
                 </form>
                 <hr />
                 <div>
@@ -183,4 +278,5 @@ const LoginModal = () => {
 export default {
   SignUpModal,
   LoginModal,
+  // <LoginModal handleLogin={handleLogin}/>
 };

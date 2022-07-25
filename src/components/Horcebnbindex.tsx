@@ -7,11 +7,18 @@ import Cardscomponent from "./Cardscomponent";
 import HorseAdventures from "./HorseAdventures";
 import Footer from "./Footer";
 import Modals from "./Modals";
+import SignupHeader from "./SignupHeader";
+import Header from "./Header";
+import { Link } from "react-router-dom";
+import AfterloginModal from "./AfterloginHeader";
+import AfterloginHeader from "./AfterloginHeader";
+// import Modals from "./Modals";
 
 function Horsebnbindex() {
   const [shorttermShow, setShorttermShow] = useState(true);
   const [monthlyShow, setMonthlyShow] = useState(false);
   const [horseexperienceShow, setHorseexperienceShow] = useState(false);
+  const [showHeader, setShowHeader] = useState(true);
 
   const ShorttermPost = () => {
     setMonthlyShow(false);
@@ -31,42 +38,32 @@ function Horsebnbindex() {
   return (
     // Navbar
     <div className="container-fluid">
-      <nav className="navbar navbar-expand-sm bg-light navbar-dark">
-        <div className="container-fluid">
-          <img src={logo} className="navbar-brand" alt="" />
-          <ul className="navbar-nav ms-auto">
-            <li className="nav-item me-4 mt-1">
-              <button
-                className="border-0 shadow-none"
-                data-bs-toggle="modal"
-                data-bs-target="#myModal">
-                Sign Up
-              </button>
-            </li>
-            <li className="nav-item me-3">
-              <button
-                className="btn btn-danger border-0 shadow-none"
-                data-bs-toggle="modal"
-                data-bs-target="#myModal1">
-                {" "}
-                Login{" "}
-              </button>
-            </li>
-          </ul>
-        </div>
-      </nav>
+      {showHeader ? <SignupHeader /> : <AfterloginHeader />}
+
+      {/* <Header /> */}
+
       <div className="container">
         <div className="row mt-4">
           <div className="col-2 ms-0 me-0 ">
-            <button className="btn btn-white border-2 shadow-none" onClick={ShorttermPost}><b>Short term Stalls</b></button>
+            <button
+              className="btn btn-white border-2 shadow-none"
+              onClick={ShorttermPost}>
+              <b>Short term Stalls</b>
+            </button>
           </div>
           <div className="col-2 ms-0 me-0">
-            <button className="ms-0 me-0 btn btn-white border-2 shadow-none" onClick={MonthlyPost}>
-            <b className=""> Monthly Board</b> 
+            <button
+              className="ms-0 me-0 btn btn-white border-2 shadow-none"
+              onClick={MonthlyPost}>
+              <b className=""> Monthly Board</b>
             </button>
           </div>
           <div className="col-2 ms-0 me-0 ">
-            <button className="btn btn-white border-2 shadow-none" onClick={HorseexperienceShow}><b>Horse experience</b></button>
+            <button
+              className="btn btn-white border-2 shadow-none"
+              onClick={HorseexperienceShow}>
+              <b>Horse experience</b>
+            </button>
           </div>
         </div>
       </div>
