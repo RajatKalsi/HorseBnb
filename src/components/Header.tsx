@@ -29,14 +29,15 @@ function Header() {
               </button>
             </li>
             <li className="nav-item me-4 mt-3 me-2">
-              <button className="border-0 bg-white decoration-textt">
+              <button className="border-0 bg-white">
                 <Link to="/hoststalls">
-                  <span className="text-dark">Hosts your Stalls</span>
+                  <span className="text-dark decoration-text">Hosts your Stalls</span>
                 </Link>
               </button>
             </li>
             <li className="nav-item me-4 mt-3 me-2">
-              <button className="border-0 bg-white">Hosts an Experience</button>
+              <button className="border-0 bg-white">
+                <Link to="/hostanexperience"><span className="text-dark ">Hosts an Experience</span></Link></button>
             </li>
             <li className="nav-item me-4 mt-3 me-2">
               <button className="border-0 bg-white">Help</button>
@@ -81,7 +82,7 @@ function Header() {
                             className="btn btn-white border-0"
                             data-bs-dismiss="modal"
                             data-bs-target="modal">
-                            <b>Bookings</b>
+                            <b><Link to="/booking">Bookings</Link></b>
                           </button>
                         </li>
                         <li>
@@ -112,7 +113,7 @@ function Header() {
                             data-bs-dismiss="modal"
                             data-bs-target="modal">
                             {" "}
-                            <b>Profile</b>
+                            <b><Link to="/profile">Profile</Link></b>
                           </button>
                         </li>
                         <li>
@@ -144,6 +145,7 @@ function Header() {
           </ul>
         </div>
       </nav>
+     
 
       {/* after login profile modal  */}
     </div>

@@ -1,11 +1,11 @@
-import React from "react";
-import horseimage from "../images/other/horseimage.png";
-import{Link} from "react-router-dom"
+import React from 'react'
+import experience from "../images/other/experience.png";
+import {Link} from 'react-router-dom'
 
-function CreateStallStep7() {
+function HostExperienceAdvanture() {
   return (
-    <div className="container">
-      <div className="row">
+    <div className='container'>
+         <div className="row">
         <div className="col-5">
           <h4 className="mt-5">
             <b>Describe your place to guests</b>
@@ -51,11 +51,11 @@ function CreateStallStep7() {
           </div>
         </div>
         <div className="col-5 pt-4 mt-5 ms-auto">
-          <img src={horseimage} className="ms-5 mt-4" alt="" />
+          <img src={experience} className="ms-5 mt-4" alt="" />
         </div>
       </div>
     </div>
-  );
+  )
 }
 
-export default CreateStallStep7;
+export default HostExperienceAdvanture

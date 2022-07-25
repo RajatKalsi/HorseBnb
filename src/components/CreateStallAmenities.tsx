@@ -1,5 +1,6 @@
 import React from "react";
 import horseimage from "../images/other/horseimage.png";
+import {Link} from 'react-router-dom'
 
 function CreateStallAmenities() {
   return (
@@ -51,11 +52,11 @@ function CreateStallAmenities() {
               </span>
               <hr className="mt-5" />
               <div className="row mt-2">
-                <div className="col-4 me-auto">
+                <div className="col-4 me-auto text-danger" onClick={()=>{window.history.back()}}>
                   <i className="bi bi-chevron-left"></i>Back
                 </div>
                 <div className="col-4 ms-auto">
-                  <button className="btn btn-success border-0">Next</button>
+                  <button className="btn btn-success border-0"><Link to="/createstallstep6"><span className="text-white">Next</span></Link></button>
                 </div>
               </div>
             </form>

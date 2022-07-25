@@ -122,3 +122,6 @@ input.border-0.rounded-pill.p-1 {
     text-decoration: none;
     list-style: none;
 }
+.container-color{
+    background-color: rgb(189, 185, 185);
+}

@@ -52,7 +52,7 @@ function CreateStallsStep10() {
             <hr className='mt-4'/>
             <div className="row mt-2 mb-4 align-items-end" style={{height:"180px"}}>
            <div className="col-4 me-auto mb-2 ">
-              <i className="bi bi-chevron-left text-danger"></i><span className='text-danger'>Back</span>
+              <i className="bi bi-chevron-left text-danger" onClick={()=>{window.history.back()}}></i><span className='text-danger'>Back</span>
             </div>
             <div className="col-4 ms-auto mt-4">
               <button className="btn btn-success border-0">Next</button>

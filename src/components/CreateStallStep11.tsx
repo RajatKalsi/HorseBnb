@@ -1,5 +1,6 @@
 import React from "react";
 import horseimage from "../images/other/horseimage.png";
+import {Link} from 'react-router-dom'
 
 function CreateStallStep11() {
   return (
@@ -31,11 +32,11 @@ function CreateStallStep11() {
               className="row mt-2 mb-4 align-items-end"
               style={{ height: "90px" }}>
               <div className="col-4 me-auto mb-2 ">
-                <i className="bi bi-chevron-left text-danger"></i>
+                <i className="bi bi-chevron-left text-danger" onClick={()=>{window.history.back()}}></i>
                 <span className="text-danger">Back</span>
               </div>
               <div className="col-4 ms-auto mt-4">
-                <button className="btn btn-success border-0">Next</button>
+                <button className="btn btn-success border-0"><Link to="/createstallstep12"><span className="text-white">Next</span></Link></button>
               </div>
             </div>
           </form>

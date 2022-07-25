@@ -52,7 +52,7 @@ function CreateStallStep2() {
 
             <hr className="mt-5" />
             <div className="row">
-              <div className="col-4 me-auto">
+              <div className="col-4 me-auto text-danger" onClick={()=>{window.history.back()}}>
                 <i className="bi bi-chevron-left"></i>Back
               </div>
               <div className="col-4 ms-auto">

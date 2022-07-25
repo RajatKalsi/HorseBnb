@@ -56,17 +56,17 @@ function Horsebnbindex() {
         </div>
       </nav>
       <div className="container">
-        <div className="row mt-5">
+        <div className="row mt-4">
           <div className="col-2 ms-0 me-0 ">
-            <b onClick={ShorttermPost}>Short term Stalls</b>
+            <button className="btn btn-white border-2 shadow-none" onClick={ShorttermPost}><b>Short term Stalls</b></button>
           </div>
           <div className="col-2 ms-0 me-0">
-            <b className="ms-0 me-0" onClick={MonthlyPost}>
-              Monthly Board
-            </b>
+            <button className="ms-0 me-0 btn btn-white border-2 shadow-none" onClick={MonthlyPost}>
+            <b className=""> Monthly Board</b> 
+            </button>
           </div>
-          <div className="col-2 ms-0 me-0">
-            <b onClick={HorseexperienceShow}>horse Experience</b>
+          <div className="col-2 ms-0 me-0 ">
+            <button className="btn btn-white border-2 shadow-none" onClick={HorseexperienceShow}><b>Horse experience</b></button>
           </div>
         </div>
       </div>

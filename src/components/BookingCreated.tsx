@@ -15,7 +15,7 @@ function BookingCreated() {
       </button>
       <div className="modal" id="myModal">
         <div className="modal-dialog">
-          <div className="modal-content">
+src/components/ChattingMessage.tsx          <div className="modal-content">
             <div className="modal-header">
               <button
                 type="button"

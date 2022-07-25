@@ -21,7 +21,7 @@ function CreateStallStep9() {
             <div className="row mt-2 mb-4 align-items-end" style={{height:"200px"}}>
           
             <div className="col-4 me-auto ">
-              <i className="bi bi-chevron-left text-danger"></i><span className='text-danger'>Back</span>
+              <i className="bi bi-chevron-left text-danger" onClick={()=>{window.history.back()}}></i><span className='text-danger'>Back</span>
             </div>
             <div className="col-4 ms-auto mt-3">
               <button className="btn btn-success border-0">Next</button>

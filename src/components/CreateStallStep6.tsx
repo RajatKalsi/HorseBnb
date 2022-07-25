@@ -2,6 +2,7 @@ import React from "react";
 import publish from "../images/other/publish.png";
 import lightbulb from "../images/other/lightbulb.png";
 import "./horsebnb.css";
+import {Link} from 'react-router-dom'
 
 function CreateStallStep6() {
   return (
@@ -33,13 +34,16 @@ function CreateStallStep6() {
             </div>
             <hr className="mt-5" />
             <div className="row mt-4">
-              <div className="col-3 me-auto">
+              <div className="col-3 me-auto text-danger" onClick={()=>{window.history.back()}}>
                 <i className="bi bi-chevron-left text-danger"></i>
                 <span className="text-danger">Back</span>
               </div>
               <div className="col-3 ms-auto">
                 <button className="btn btn-success border-0">
                   Skip for now
+                </button>
+                <button className="btn btn-success border-0">
+                  <Link to="/createstallstep7"><span className="text-white">Next</span></Link>
                 </button>
               </div>
             </div>

@@ -36,6 +36,12 @@ import CreateStallStep14 from "./components/CreateStallStep14";
 import CreateStallStep15 from "./components/CreateStallStep15";
 import Extrafile from "./components/Extrafile";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import HostanExperience from "./components/HostanExperience";
+import HorseExperienceStep1 from "./components/HostanExperienceStep1";
+import HostanExperienceStep1 from "./components/HostanExperienceStep1";
+import HostExperienceLocation from "./components/HostExperienceLocation";
+import HostExperienceGroup from "./components/HostExperienceGroup";
+import InitMap from "./components/GoogleMap";
 
 function App() {
   return (
@@ -75,12 +81,37 @@ function App() {
       {/* <CreateStallStep14 /> */}
       {/* <CreateStallStep15 /> */}
       {/* <Extrafile /> */}
+      {/* <HostanExperience/> */}
+      {/* <HostExperienceLocation/> */}
+     
       <Router>
         <Routes>
           <Route path="/" element={<Header />} />
           <Route path="/hoststalls" element={<HostStalls />} />
           <Route path="/createstallstep1" element={<CreateStallStep1 />} />
+          <Route path="/booking" element={<Booking/>} />
+          <Route path="/profile" element={<Profile/>} />
+          <Route path="/personalinformation" element={<PersonalInformation/>}/>
+          <Route path="/updatepassword" element={<Updatepassword/>}/>
+          <Route path="/createstallstep3" element={<CreateStallStep3/>}/>
+          <Route path="/createstallstep5" element={<CreateStallStep5/>}/>
+          <Route path="/createstallamenities" element={<CreateStallAmenities/>}/>
+          <Route path="/createstallstep6" element={<CreateStallStep6/>}/>
+          <Route path="/createstallstep7" element={<CreateStallStep7/>}/>
+          <Route path="/createstallstep11" element={<CreateStallStep11/>}/>
+          <Route path="/createstallstep12" element={<CreateStallStep12/>}/>
+          <Route path="/createstallstep13" element={<CreateStallStep13/>}/>
+          <Route path="/createstallstep14" element={<CreateStallStep14/>}/>
+          <Route path="/createstallstep15" element={<CreateStallStep15/>}/>
+          <Route path="/hostanexperience" element={<HostanExperience/>}/>
+          <Route path="/hostanexperiencestep1" element={<HostanExperienceStep1/>}/>
+          <Route path="/hostexperiencelocation" element={<HostExperienceLocation/>}/>
+
         </Routes>
+       {/* <HostanExperienceStep1/> */}
+       {/* <HostExperienceGroup/> */}
+     
+      
       </Router>
     </div>
   );

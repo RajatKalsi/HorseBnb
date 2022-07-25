@@ -98,7 +98,7 @@ function HostStalls() {
           <div className="col-4 ms-auto mt-5 p-3">
             <h2 className="text-white mt-5">Ready to Earn ?</h2>
             <button className="btn btn-primary p-2 border-0 shadow-none text-white mt-4">
-              Get started
+           <Link to="/createstallstep1"> <span className="text-white">Get started</span></Link>  
             </button>
           </div>
         </div>

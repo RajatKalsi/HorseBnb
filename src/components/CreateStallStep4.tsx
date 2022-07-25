@@ -33,7 +33,7 @@ const CreateStallStep4 = () => {
                 className="d-flex align-items-end"
                 style={{ height: "300px" }}>
                 <hr />
-                <div className="col-3 me-auto mb-2">
+                <div className="col-3 me-auto mb-2 text-danger" onClick={()=>{window.history.back()}}>
                   <i className="bi bi-chevron-left"></i>Back
                 </div>
                 <div className="col-3 ms-auto mt-2">

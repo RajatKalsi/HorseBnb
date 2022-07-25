@@ -1,12 +1,12 @@
-import React from "react";
+import React from 'react'
+import experience from "../images/other/experience.png";
 import nearme from "../images/other/nearme.png";
-import {Link} from 'react-router-dom'
-import horseimage from "../images/other/horseimage.png";
+import {Link} from "react-router-dom"
 
-function CreateStallStep5() {
+function HostExperienceLocation() {
   return (
-    <div className="section">
-      <div className="container">
+    <div>
+         <div className="container">
         <div className="row">
           <div className="col-4 me-auto">
             <h4 className="mt-5">
@@ -85,12 +85,12 @@ function CreateStallStep5() {
             </form>
           </div>
           <div className="col-5 pt-4 mt-5 ms-auto">
-            <img src={horseimage} className="ms-5 mt-4" alt="" />
+            <img src={experience} className="ms-5 mt-4" alt="" />
           </div>
         </div>
       </div>
     </div>
-  );
+  )
 }
 
-export default CreateStallStep5;
+export default HostExperienceLocation

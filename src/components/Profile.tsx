@@ -2,7 +2,7 @@
 import img1 from "../images/other/personalinfo.png";
 import img2 from "../images/other/changepassword.png";
 import img4 from "../images/other/notification.png";
-// import { Link } from 'react-router-dom';
+import { Link } from 'react-router-dom'
 import "./horsebnb.css";
 
 const Profile = () => {
@@ -19,7 +19,7 @@ const Profile = () => {
                   <img src={img1} alt="" height="50px" width="50px" />
                 </div>
                 <div className="col-6 mt-3">
-                  <p>Personal info</p>
+                  <p><Link to="/personalinformation">Personal info</Link></p>
                 </div>
                 <div className="col-2 mt-3 me-3">
                   <i className="bi bi-chevron-compact-right"></i>
@@ -36,7 +36,7 @@ const Profile = () => {
                   <img src={img2} alt="" height="50px" width="50px" />
                 </div>
                 <div className="col-7 mt-3">
-                  <p>Update Password</p>
+                  <p><Link to="/updatepassword">Update Password</Link></p>
                 </div>
                 <div className="col-1 mt-3 me-2">
                   <i className="bi bi-chevron-compact-right"></i>
