@@ -20,7 +20,7 @@ const responseBody = (res) => res.body;
 let token = null;
 const tokenPlugin = (req) => {
   if (token) {
-    req.set("token", `${token}`);
+    req.set("Authorization", `${token}`);
   }
 };
 
@@ -49,10 +49,13 @@ const requests = {
 const Auth = {
   login: (info) => requests.post("/login", info),
   signup: (info) => requests.post("/current_user/create", info),
+  updateProfile: (info) => requests.post("/current_user/update_profile", info),
   forgotPassword: (info) => requests.post("forgot-password", info),
   checkOtp: (info) => requests.post("check-email-otp", info),
   resetPassword: (info) => requests.post("reset/password", info),
+  getprofile: (info, header) => requests.get("/current_user/show", info),
   changePassword: (info) => requests.put("admin/change-password", info),
+  updatePassword: (info) => requests.post("/current_user/update_profile", info),
 };
 
 // const Auth = {

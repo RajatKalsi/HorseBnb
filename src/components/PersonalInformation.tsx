@@ -1,8 +1,10 @@
 import React, { useState } from "react";
 import "./horsebnb.css";
 import img1 from "../images/other/personalinfo.png";
+import henceforthApi from "./utils/henceforthApi";
 
 function PersonalInformation() {
+  henceforthApi.setToken(localStorage.getItem("token"));
   const [show, setShow] = useState(true);
   const [show1, setShow1] = useState(true);
   const [show2, setShow2] = useState(true);
@@ -15,6 +17,29 @@ function PersonalInformation() {
   const [showemail, setShowemail] = useState(false);
   const [showphoneNumber, setShowphoneNumber] = useState(false);
   const [showaddress, setshowAddress] = useState(false);
+  const [editUserName, setEditUserName] = useState({
+    firstName: "",
+    lastName: "",
+  });
+  const [gender, setGender] = useState("");
+  const [date, setDate] = useState({
+    age: "",
+  });
+  const [email, setEmail] = useState({
+    publicData: {},
+    protectedData: {},
+    email: "",
+  });
+  const [phoneNumber, setPhoneNumber] = useState({
+    protectedData: {
+      phoneNumber: "",
+    },
+  });
+  const [address, setAddress] = useState({
+    // publicData: {
+    address: "",
+    // },
+  });
 
   const EditName = () => {
     setShow(false);
@@ -64,6 +89,34 @@ function PersonalInformation() {
     setShow5(true);
     setshowAddress(false);
   };
+  const UsernameChange = (e: any) => {
+    let name = e.target.name;
+    let value = e.target.value;
+
+    setEditUserName({
+      ...editUserName,
+      [name]: value,
+    });
+  };
+
+  const SaveName = async () => {
+    console.log(editUserName);
+    let res = await henceforthApi.Auth.updateProfile(editUserName);
+  };
+  const GenderEdit = () => {};
+
+  const DateEdit = async () => {
+    let res = await henceforthApi.Auth.updateProfile(date);
+  };
+  const EmailEdit = async () => {
+    let res = henceforthApi.Auth.updateProfile(email);
+  };
+  const PhoneNumberEdit = () => {
+    let res = henceforthApi.Auth.updateProfile(phoneNumber);
+  };
+  const AddressEdit = () => {
+    let res = henceforthApi.Auth.updateProfile(address);
+  };
   return (
     <div className="container mb-5">
       <div className="d-flex mt-5">
@@ -77,6 +130,7 @@ function PersonalInformation() {
       <div className="row mt-2">
         <h3>Personal info</h3>
       </div>
+      {/* Name  */}
       <div className="row mt-3">
         <div className="col-6">
           <div className="row border border-2 p-2">
@@ -112,7 +166,9 @@ function PersonalInformation() {
                     <input
                       type="text"
                       placeholder="First Name"
+                      name="firstName"
                       className="w-100"
+                      onChange={UsernameChange}
                     />
                   </div>
                   <div className="col-6">
@@ -122,10 +178,16 @@ function PersonalInformation() {
                       type="text"
                       placeholder="Last Name"
                       className="w-100"
+                      name="lastName"
+                      onChange={UsernameChange}
                     />
                   </div>
                 </div>
-                <button className="btn btn-success border-0 mt-2">Save</button>
+                <button
+                  className="btn btn-success border-0 mt-2"
+                  onClick={SaveName}>
+                  Save
+                </button>
               </div>
             ) : (
               ""
@@ -156,11 +218,13 @@ function PersonalInformation() {
               {showGender ? (
                 <div className="col-12">
                   <select className="form-select" id="sel1" name="sellist1">
-                    Choose Gender
-                    <option>Male</option>
-                    <option>Female</option>
+                    <option selected>Choose Gender</option>
+                    <option value="1">Male</option>
+                    <option value="2">Female</option>
                   </select>
-                  <button className="btn btn-success border-0 mt-2">
+                  <button
+                    className="btn btn-success border-0 mt-2"
+                    onClick={GenderEdit}>
                     Save
                   </button>
                 </div>
@@ -196,9 +260,13 @@ function PersonalInformation() {
                   <input
                     type="date"
                     className="w-100"
+                    value={date.age}
+                    onChange={(e: any) => setDate(e.target.value)}
                     placeholder="Choose your Birth Date"
                   />
-                  <button className="btn btn-success border-0 mt-2">
+                  <button
+                    className="btn btn-success border-0 mt-2"
+                    onClick={DateEdit}>
                     Save
                   </button>
                 </div>
@@ -234,10 +302,16 @@ function PersonalInformation() {
                   <p>For Notification, remainders,and help logging in</p>
                   <input
                     type="email"
+                    value={email.email}
+                    onChange={(e: any) => {
+                      setEmail(e.target.value);
+                    }}
                     className="w-100"
                     placeholder="Enter Your mail"
                   />
-                  <button className="btn btn-success border-0 mt-2">
+                  <button
+                    className="btn btn-success border-0 mt-2"
+                    onClick={EmailEdit}>
                     Save
                   </button>
                 </div>
@@ -288,10 +362,19 @@ function PersonalInformation() {
                         type="text"
                         className="form-control"
                         id="inlineFormInputGroup"
+                        onChange={(e: any) => {
+                          setPhoneNumber(e.target.value);
+                        }}
+                        value={phoneNumber?.protectedData?.phoneNumber}
                         placeholder="Mobile number"
                         name="mobile_number"
                       />
                     </div>
+                    <button
+                      className="btn btn-success border-0 mt-2"
+                      onClick={PhoneNumberEdit}>
+                      Save
+                    </button>
                   </div>
                 </div>
               ) : (
@@ -327,8 +410,15 @@ function PersonalInformation() {
                     type="text"
                     className="w-100"
                     placeholder="Enter Your Location"
+                    name="publicData"
+                    onChange={(e: any) => {
+                      setAddress(e.target.value);
+                    }}
+                    value={address.address}
                   />
-                  <button className="btn btn-success border-0 mt-2">
+                  <button
+                    className="btn btn-success border-0 mt-2"
+                    onClick={AddressEdit}>
                     Save
                   </button>
                 </div>

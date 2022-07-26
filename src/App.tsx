@@ -41,13 +41,13 @@ import HorseExperienceStep1 from "./components/HostanExperienceStep1";
 import HostanExperienceStep1 from "./components/HostanExperienceStep1";
 import HostExperienceLocation from "./components/HostExperienceLocation";
 import HostExperienceGroup from "./components/HostExperienceGroup";
-import InitMap from "./components/GoogleMap";
+// import InitMap from "./components/GoogleMap";
 import Loading from "./components/Loading";
 
 function App() {
   return (
     <div className="App">
-      <Horsebnbindex />
+      {/* <Horsebnbindex /> */}
       {/* <Modals /> */}
       {/* <Header /> */}
       {/* <SearchWithoutMap /> */}
@@ -125,6 +125,7 @@ function App() {
         </Routes>
         {/* <HostanExperienceStep1/> */}
         {/* <HostExperienceGroup/> */}
+        {/* <InitMap /> */}
       </Router>
     </div>
   );

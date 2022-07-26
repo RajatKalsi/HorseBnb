@@ -38,7 +38,7 @@ function Horsebnbindex() {
   return (
     // Navbar
     <div className="container-fluid">
-      {showHeader ? <SignupHeader /> : <AfterloginHeader />}
+      <SignupHeader />
 
       {/* <Header /> */}
 

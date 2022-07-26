@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import henceforthApi from "./utils/henceforthApi";
 import axios from "axios";
 import Loading from "./Loading";
@@ -172,18 +172,20 @@ const LoginModal = () => {
       [name]: value,
     });
   };
-
+  // let headers = {
+  //   Authorization: localStorage.getItem("token"),
+  // };
   const handleLogin = async () => {
     try {
       setLoading(true);
       let res = await henceforthApi.Auth.login(login);
       setLoading(false);
-      // console.log(res.data.token);
       localStorage.setItem("token", res.data.token);
-      if (localStorage.getItem("token")) {
-        <AfterloginHeader />;
-      } else {
-        <Horsebnbindex />;
+      henceforthApi.setToken(localStorage.getItem("token"));
+      try {
+        let res = await henceforthApi.Auth.getprofile();
+      } catch {
+        console.log("error");
       }
     } catch {
       setLoading(false);

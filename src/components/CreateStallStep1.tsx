@@ -1,7 +1,7 @@
 import React from "react";
 import logo from "../images/other/logo.svg";
 import stallmain from "../images/other/stallmain.png";
-import {Link} from 'react-router-dom'
+import { Link } from "react-router-dom";
 
 function CreateStallStep1() {
   return (
@@ -51,7 +51,11 @@ function CreateStallStep1() {
               placeholder="Enter Your location"
               className="w-100 mt-4 p-1"
             />
-            <button className="btn btn-success mt-3"><Link to="/createstallstep3"><span className="text-white">Continue</span></Link></button>
+            <button className="btn btn-success mt-3">
+              <Link to="/createstallstep3">
+                <span className="text-white">Continue</span>
+              </Link>
+            </button>
           </div>
           <div className="col-7">
             <img src={stallmain} alt="" height="450px" width="700px" />
