@@ -27,19 +27,16 @@ function PersonalInformation() {
   });
   const [email, setEmail] = useState({
     publicData: {},
-    protectedData: {},
+    // protectedData: {
     email: "",
+    // },
   });
   const [phoneNumber, setPhoneNumber] = useState({
     protectedData: {
       phoneNumber: "",
     },
   });
-  const [address, setAddress] = useState({
-    // publicData: {
-    address: "",
-    // },
-  });
+  const [address, setAddress] = useState("");
 
   const EditName = () => {
     setShow(false);
@@ -103,10 +100,13 @@ function PersonalInformation() {
     console.log(editUserName);
     let res = await henceforthApi.Auth.updateProfile(editUserName);
   };
-  const GenderEdit = () => {};
+  const GenderEdit = async () => {
+    let res = await henceforthApi.Auth.updateProfile(gender);
+  };
 
   const DateEdit = async () => {
     let res = await henceforthApi.Auth.updateProfile(date);
+    console.log(res);
   };
   const EmailEdit = async () => {
     let res = henceforthApi.Auth.updateProfile(email);
@@ -117,6 +117,18 @@ function PersonalInformation() {
   const AddressEdit = () => {
     let res = henceforthApi.Auth.updateProfile(address);
   };
+  const Getprofile = async () => {
+    let res = await henceforthApi.Auth.getprofile();
+    console.log(res.data.attributes.email);
+    setEditUserName(res.data.attributes.profile.firstName);
+    setEmail(res.data.attributes.email);
+  };
+  useState(() => {
+    // let res = henceforthApi.Auth.getprofile();
+    // setEditUserName()
+    // console.log(res);
+    Getprofile();
+  });
   return (
     <div className="container mb-5">
       <div className="d-flex mt-5">
@@ -136,7 +148,14 @@ function PersonalInformation() {
           <div className="row border border-2 p-2">
             <div className="col-4 me-auto">
               <b>Name</b>
-              {show ? <p>John Doe</p> : ""}
+              {show ? (
+                <p>
+                  {/* {editUserName.firstName}
+                  {editUserName.lastName} */}
+                </p>
+              ) : (
+                ""
+              )}
             </div>
             <div className="col-2 text-danger ms-auto">
               {show ? (
@@ -198,7 +217,7 @@ function PersonalInformation() {
             <div className="row border border-2 p-2">
               <div className="col-4 me-auto">
                 <b>Gender</b>
-                {show1 ? <p>Not specified</p> : ""}
+                {show1 ? <p>{gender}</p> : ""}
               </div>
               <div className="col-2 text-danger ms-auto">
                 {show1 ? (
@@ -217,10 +236,17 @@ function PersonalInformation() {
               </div>
               {showGender ? (
                 <div className="col-12">
-                  <select className="form-select" id="sel1" name="sellist1">
+                  <select
+                    className="form-select"
+                    onChange={(e) => {
+                      setGender(e.target.value);
+                    }}
+                    id="sel1"
+                    name=""
+                    title="gh">
                     <option selected>Choose Gender</option>
-                    <option value="1">Male</option>
-                    <option value="2">Female</option>
+                    <option value="Male">Male</option>
+                    <option value="Female">Female</option>
                   </select>
                   <button
                     className="btn btn-success border-0 mt-2"
@@ -238,7 +264,7 @@ function PersonalInformation() {
             <div className="row border border-2 p-2">
               <div className="col-4 me-auto">
                 <b>Date of Birth</b>
-                {show2 ? <p>8 Jun,2014</p> : ""}
+                {show2 ? <p>{date.age}</p> : ""}
               </div>
               <div className="col-2 text-danger ms-auto">
                 {show2 ? (
@@ -280,7 +306,7 @@ function PersonalInformation() {
             <div className="row border border-2 p-2">
               <div className="col-4 me-auto">
                 <b>Email address</b>
-                {show3 ? <p>rajat@gmail.com</p> : ""}
+                {show3 ? <p>{email.email}</p> : ""}
               </div>
               <div className="col-2 text-danger ms-auto">
                 {show3 ? (
@@ -325,7 +351,7 @@ function PersonalInformation() {
             <div className="row border border-2 p-2">
               <div className="col-4 me-auto">
                 <b>Phone Number</b>
-                {show4 ? <p>+91 9854567854</p> : ""}
+                {show4 ? <p>{phoneNumber.protectedData.phoneNumber}</p> : ""}
               </div>
               <div className="col-2 text-danger ms-auto">
                 {" "}
@@ -387,7 +413,7 @@ function PersonalInformation() {
             <div className="row border border-2 p-2">
               <div className="col-4 me-auto">
                 <b>Address</b>
-                {show5 ? <p>New Delhi</p> : ""}
+                {show5 ? <p>{address}</p> : ""}
               </div>
               <div className="col-2 text-danger ms-auto">
                 {show5 ? (
@@ -414,7 +440,7 @@ function PersonalInformation() {
                     onChange={(e: any) => {
                       setAddress(e.target.value);
                     }}
-                    value={address.address}
+                    value={address}
                   />
                   <button
                     className="btn btn-success border-0 mt-2"

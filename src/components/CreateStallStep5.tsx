@@ -1,7 +1,9 @@
 import React from "react";
 import nearme from "../images/other/nearme.png";
-import {Link} from 'react-router-dom'
+import { Link } from "react-router-dom";
 import horseimage from "../images/other/horseimage.png";
+// import  Map  from "@react-google-maps/api";
+import Map from "./Map.js";
 
 function CreateStallStep5() {
   return (
@@ -20,6 +22,9 @@ function CreateStallStep5() {
               <img src={nearme} alt="" />
               Use Current location
             </button>
+            <div>
+              <Map />
+            </div>
             <form className="mt-3">
               <label>Country/Region</label>
               <br></br>
@@ -75,11 +80,19 @@ function CreateStallStep5() {
               </div>
               <hr />
               <div className="row mt-4">
-                <div className="col-3 me-auto text-danger" onClick={()=>{window.history.back()}}>
+                <div
+                  className="col-3 me-auto text-danger"
+                  onClick={() => {
+                    window.history.back();
+                  }}>
                   <i className="bi bi-chevron-left"></i>Back
                 </div>
                 <div className="col-3 ms-auto">
-                  <button className="btn btn-success border-0"><Link to="/createstallamenities"><span className="text-white">Next</span></Link></button>
+                  <button className="btn btn-success border-0">
+                    <Link to="/createstallamenities">
+                      <span className="text-white">Next</span>
+                    </Link>
+                  </button>
                 </div>
               </div>
             </form>

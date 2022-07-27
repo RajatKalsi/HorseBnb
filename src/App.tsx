@@ -43,6 +43,7 @@ import HostExperienceLocation from "./components/HostExperienceLocation";
 import HostExperienceGroup from "./components/HostExperienceGroup";
 // import InitMap from "./components/GoogleMap";
 import Loading from "./components/Loading";
+import { GoogleMap } from "@react-google-maps/api";
 
 function App() {
   return (
@@ -86,6 +87,7 @@ function App() {
       {/* <HostExperienceLocation/> */}
       {/* <Loading /> */}
       {/* <Header /> */}
+      {/* <GoogleMap /> */}
 
       <Router>
         <Routes>
