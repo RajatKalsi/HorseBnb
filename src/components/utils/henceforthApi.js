@@ -56,6 +56,8 @@ const Auth = {
   getprofile: (info, header) => requests.get("/current_user/show", info),
   changePassword: (info) => requests.put("admin/change-password", info),
   updatePassword: (info) => requests.post("/current_user/update_profile", info),
+  postTitle: (info) => requests.post("/own_listings/create_draft", info),
+  stallUpdate: (info) => requests.post("/own_listings/update", info),
 };
 
 // const Auth = {

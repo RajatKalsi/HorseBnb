@@ -179,6 +179,7 @@ const LoginModal = () => {
     try {
       setLoading(true);
       let res = await henceforthApi.Auth.login(login);
+      // console.log(res);
       setLoading(false);
       localStorage.setItem("token", res.data.token);
       henceforthApi.setToken(localStorage.getItem("token"));

@@ -1,9 +1,23 @@
-import React from "react";
+import React, { useState } from "react";
 import logo from "../images/other/logo.svg";
 import stallmain from "../images/other/stallmain.png";
 import { Link } from "react-router-dom";
+import henceforthApi from "./utils/henceforthApi";
 
 function CreateStallStep1() {
+  henceforthApi.setToken(localStorage.getItem("token"));
+  const [stall, setStall] = useState("");
+  const [title, setTitle] = useState();
+  const [shortMonthly, setShortMonthly] = useState({});
+  const TitlePost = async () => {
+    let res = await henceforthApi.Auth.postTitle({
+      title: title,
+      publicData: {
+        type: "1",
+        stepCompleted: [1],
+      },
+    });
+  };
   return (
     <div>
       <nav className="navbar navbar-expand-sm navbar-dark shadow">
@@ -21,12 +35,15 @@ function CreateStallStep1() {
             <h4>What kind of place do you have?</h4>
             <select
               className="form-select mt-3"
-              aria-label="Default select example">
+              aria-label="Default select example"
+              onChange={(e: any) => {
+                setShortMonthly(e.target.value);
+              }}>
               <option selected>Choose your Stalls</option>
               <option value="1">Short terms stalls</option>
               <option value="2">Monthly Board</option>
             </select>
-            <div className="row mt-3">
+            {/* <div className="row mt-3">
               <div className="col-6 me-auto">
                 <select
                   className="form-select mt-2"
@@ -34,6 +51,7 @@ function CreateStallStep1() {
                   <option selected>For 1 stalls</option>
                   <option value="1">1</option>
                   <option value="2">2</option>
+                  <option value="2">3</option>
                 </select>
               </div>
               <div className="col-6 ms-auto">
@@ -43,17 +61,24 @@ function CreateStallStep1() {
                   <option selected>For 1 guests</option>
                   <option value="1">1</option>
                   <option value="2">2</option>
+                  <option value="2">3</option>
                 </select>
               </div>
-            </div>
+            </div> */}
             <input
               type="text"
-              placeholder="Enter Your location"
+              value={title}
+              placeholder="Create Your Title"
               className="w-100 mt-4 p-1"
+              onChange={(e: any) => {
+                setTitle(e.target.value);
+              }}
             />
             <button className="btn btn-success mt-3">
               <Link to="/createstallstep3">
-                <span className="text-white">Continue</span>
+                <span className="text-white" onClick={TitlePost}>
+                  Continue
+                </span>
               </Link>
             </button>
           </div>

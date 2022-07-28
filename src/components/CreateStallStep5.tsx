@@ -22,9 +22,7 @@ function CreateStallStep5() {
               <img src={nearme} alt="" />
               Use Current location
             </button>
-            <div>
-              <Map />
-            </div>
+            <div>{/* <Map /> */}</div>
             <form className="mt-3">
               <label>Country/Region</label>
               <br></br>

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./horsebnb.css";
 import img1 from "../images/other/personalinfo.png";
 import henceforthApi from "./utils/henceforthApi";
@@ -21,21 +21,10 @@ function PersonalInformation() {
     firstName: "",
     lastName: "",
   });
-  const [gender, setGender] = useState("");
-  const [date, setDate] = useState({
-    age: "",
-  });
-  const [email, setEmail] = useState({
-    publicData: {},
-    // protectedData: {
-    email: "",
-    // },
-  });
-  const [phoneNumber, setPhoneNumber] = useState({
-    protectedData: {
-      phoneNumber: "",
-    },
-  });
+  const [gender, setGender] = useState();
+  const [age, setAge] = useState();
+  const [email, setEmail] = useState("");
+  const [phoneNumber, setPhoneNumber] = useState();
   const [address, setAddress] = useState("");
 
   const EditName = () => {
@@ -98,37 +87,52 @@ function PersonalInformation() {
 
   const SaveName = async () => {
     console.log(editUserName);
-    let res = await henceforthApi.Auth.updateProfile(editUserName);
+    let res = await henceforthApi.Auth.updateProfile({
+      firstName: editUserName.firstName,
+      lastName: editUserName.lastName,
+    });
   };
   const GenderEdit = async () => {
-    let res = await henceforthApi.Auth.updateProfile(gender);
+    let res = await henceforthApi.Auth.updateProfile({
+      publicData: { gender: gender },
+    });
   };
 
   const DateEdit = async () => {
-    let res = await henceforthApi.Auth.updateProfile(date);
+    let res = await henceforthApi.Auth.updateProfile({
+      publicData: { protectedData: { age: age } },
+    });
     console.log(res);
   };
   const EmailEdit = async () => {
-    let res = henceforthApi.Auth.updateProfile(email);
+    let res = henceforthApi.Auth.updateProfile({ email: email });
   };
   const PhoneNumberEdit = () => {
-    let res = henceforthApi.Auth.updateProfile(phoneNumber);
+    let res = henceforthApi.Auth.updateProfile(
+      // ...phoneNumber,
+      { protectedData: { phoneNumber: phoneNumber } }
+    );
   };
   const AddressEdit = () => {
-    let res = henceforthApi.Auth.updateProfile(address);
+    let res = henceforthApi.Auth.updateProfile({
+      publicData: { city: address },
+    });
   };
   const Getprofile = async () => {
     let res = await henceforthApi.Auth.getprofile();
-    console.log(res.data.attributes.email);
+    localStorage.setItem("id", res.data.id.uuid);
+    // console.log(res.data.id.uuid);
     setEditUserName(res.data.attributes.profile.firstName);
     setEmail(res.data.attributes.email);
+    setGender(res.data.attributes.profile.publicData.gender);
+    setPhoneNumber(res.data.attributes.profile.protectedData.phoneNumber);
+    setAge(res.data.attributes.profile.publicData.age);
+    setAddress(res.data.attributes.profile.publicData.address.city);
+    // setAddress(res);
   };
-  useState(() => {
-    // let res = henceforthApi.Auth.getprofile();
-    // setEditUserName()
-    // console.log(res);
+  useEffect(() => {
     Getprofile();
-  });
+  }, []);
   return (
     <div className="container mb-5">
       <div className="d-flex mt-5">
@@ -150,8 +154,8 @@ function PersonalInformation() {
               <b>Name</b>
               {show ? (
                 <p>
-                  {/* {editUserName.firstName}
-                  {editUserName.lastName} */}
+                  {editUserName.firstName}
+                  {editUserName.lastName}
                 </p>
               ) : (
                 ""
@@ -186,6 +190,7 @@ function PersonalInformation() {
                       type="text"
                       placeholder="First Name"
                       name="firstName"
+                      value={editUserName.firstName}
                       className="w-100"
                       onChange={UsernameChange}
                     />
@@ -197,6 +202,7 @@ function PersonalInformation() {
                       type="text"
                       placeholder="Last Name"
                       className="w-100"
+                      value={editUserName.lastName}
                       name="lastName"
                       onChange={UsernameChange}
                     />
@@ -238,7 +244,7 @@ function PersonalInformation() {
                 <div className="col-12">
                   <select
                     className="form-select"
-                    onChange={(e) => {
+                    onChange={(e: any) => {
                       setGender(e.target.value);
                     }}
                     id="sel1"
@@ -264,7 +270,7 @@ function PersonalInformation() {
             <div className="row border border-2 p-2">
               <div className="col-4 me-auto">
                 <b>Date of Birth</b>
-                {show2 ? <p>{date.age}</p> : ""}
+                {show2 ? <p>{age}</p> : ""}
               </div>
               <div className="col-2 text-danger ms-auto">
                 {show2 ? (
@@ -286,8 +292,8 @@ function PersonalInformation() {
                   <input
                     type="date"
                     className="w-100"
-                    value={date.age}
-                    onChange={(e: any) => setDate(e.target.value)}
+                    value={age}
+                    onChange={(e: any) => setAge(e.target.value)}
                     placeholder="Choose your Birth Date"
                   />
                   <button
@@ -306,7 +312,7 @@ function PersonalInformation() {
             <div className="row border border-2 p-2">
               <div className="col-4 me-auto">
                 <b>Email address</b>
-                {show3 ? <p>{email.email}</p> : ""}
+                {show3 ? <p>{email}</p> : ""}
               </div>
               <div className="col-2 text-danger ms-auto">
                 {show3 ? (
@@ -328,7 +334,7 @@ function PersonalInformation() {
                   <p>For Notification, remainders,and help logging in</p>
                   <input
                     type="email"
-                    value={email.email}
+                    value={email}
                     onChange={(e: any) => {
                       setEmail(e.target.value);
                     }}
@@ -351,7 +357,7 @@ function PersonalInformation() {
             <div className="row border border-2 p-2">
               <div className="col-4 me-auto">
                 <b>Phone Number</b>
-                {show4 ? <p>{phoneNumber.protectedData.phoneNumber}</p> : ""}
+                {show4 ? <p>{phoneNumber}</p> : ""}
               </div>
               <div className="col-2 text-danger ms-auto">
                 {" "}
@@ -387,11 +393,11 @@ function PersonalInformation() {
                       <input
                         type="text"
                         className="form-control"
+                        value={phoneNumber}
                         id="inlineFormInputGroup"
                         onChange={(e: any) => {
                           setPhoneNumber(e.target.value);
                         }}
-                        value={phoneNumber?.protectedData?.phoneNumber}
                         placeholder="Mobile number"
                         name="mobile_number"
                       />

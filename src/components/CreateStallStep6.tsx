@@ -1,10 +1,13 @@
-import React from "react";
+import React, { useState } from "react";
 import publish from "../images/other/publish.png";
 import lightbulb from "../images/other/lightbulb.png";
 import "./horsebnb.css";
-import {Link} from 'react-router-dom'
+import { Link } from "react-router-dom";
+import { useRef } from "react";
 
 function CreateStallStep6() {
+  const inputRef = useRef(null);
+  const [image, setImage] = useState(null);
   return (
     <div className="section">
       <div className="container">
@@ -20,21 +23,42 @@ function CreateStallStep6() {
             <div className="text-center image-border p-3 mt-3" style={{}}>
               <img className="" src={publish} alt="" />
               <br></br>
-              <button className="btn btn-success disable">
+              <button
+                className="btn btn-success disable"
+                onClick={() => {
+                  document.getElementById("input1")?.click();
+                }}>
                 Uploads Photos
               </button>
-              <div className="row">
+              <input
+                type="file"
+                ref={inputRef}
+                id="input1"
+                placeholder="f"
+                accept="images/*"
+                onChange={(e: any) => {
+                  setImage(e.target.files[0]);
+                }}
+                style={{ display: "none" }}
+              />
+              {/* <div className="row">
                 <div className="col-6">
-                  <img src="" alt=""></img>
+                  <img
+                    src={image ? URL.createObjectURL(image) : ""}
+                    alt=""></img>
                 </div>
                 <div className="col-6">
                   <img src="" alt=""></img>
                 </div>
-              </div>
+              </div> */}
             </div>
             <hr className="mt-5" />
-            <div className="row mt-4">
-              <div className="col-3 me-auto text-danger" onClick={()=>{window.history.back()}}>
+            {/* <div className="row mt-4">
+              <div
+                className="col-3 me-auto text-danger"
+                onClick={() => {
+                  window.history.back();
+                }}>
                 <i className="bi bi-chevron-left text-danger"></i>
                 <span className="text-danger">Back</span>
               </div>
@@ -43,10 +67,12 @@ function CreateStallStep6() {
                   Skip for now
                 </button>
                 <button className="btn btn-success border-0">
-                  <Link to="/createstallstep7"><span className="text-white">Next</span></Link>
+                  <Link to="/createstallstep7">
+                    <span className="text-white">Next</span>
+                  </Link>
                 </button>
               </div>
-            </div>
+            </div> */}
           </div>
           <div className="col-6 mt-5">
             <div className="row">
@@ -65,6 +91,34 @@ function CreateStallStep6() {
                   </ol>
                 </p>
               </div>
+            </div>
+          </div>
+
+          <div className="row">
+            <div className="col-6">
+              <img src={image ? URL.createObjectURL(image) : ""} alt=""></img>
+            </div>
+            <div className="col-6">
+              {/* <img src="" alt=""></img> */}
+              {/* <img src={image ? URL.createObjectURL(image) : ""} alt=""></img> */}
+            </div>
+          </div>
+          <div className="row mt-4">
+            <div
+              className="col-3 me-auto text-danger"
+              onClick={() => {
+                window.history.back();
+              }}>
+              <i className="bi bi-chevron-left text-danger"></i>
+              <span className="text-danger">Back</span>
+            </div>
+            <div className="col-3 ms-auto">
+              <button className="btn btn-success border-0">Skip for now</button>
+              <button className="btn btn-success border-0" type="submit">
+                <Link to="/createstallstep7">
+                  <span className="text-white">Next</span>
+                </Link>
+              </button>
             </div>
           </div>
         </div>
