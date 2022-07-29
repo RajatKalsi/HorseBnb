@@ -1,9 +1,40 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import horseimage from "../images/other/horseimage.png";
 import { Link } from "react-router-dom";
+import henceforthApi from "./utils/henceforthApi";
 
 function CreateStallAmenities() {
-  const [amenities, setAmenities] = useState("");
+  henceforthApi.setToken(localStorage.getItem("token"));
+  const [ischecked, setIschecked] = useState(false);
+  const [amenities, setAmenities] = useState([]);
+  const inputRef = useRef(null);
+  const inputRef1 = useRef(null);
+  const inputRef2 = useRef(null);
+  let k = document.getElementById("checkbox");
+  let Arraylist = ["tv", "wifi", "ge", "ghtet"];
+
+  let amentiesArray = [];
+  for (let checkbox in k) {
+    // if(checkbox.checked==true)
+  }
+  // let checkvalue = document.getElementById("checkbox").value;
+  const AmenitiesUpdate = () => {
+    // console.log(amenities);
+    let res = henceforthApi.Auth.amenitiesUpdate({
+      id: localStorage.getItem("id"),
+      amenities: amenities,
+    });
+    // if (amenities != null) {
+    //   console.log("hello");
+    // } else {
+    //   console.log("error");
+    // }
+  };
+  let checkbox = document.getElementById("checkbox") as HTMLInputElement | null;
+  if (checkbox?.checked) {
+  } else {
+    console.log("value is unchecked");
+  }
   return (
     <div className="section">
       <div className="container">
@@ -16,41 +47,108 @@ function CreateStallAmenities() {
               There are just the amenities guests usually expect,but you can add
               even more after you bublish
             </p>
-            <form>
-              <input type="checkbox" className="me-3" placeholder="gh" />
-              <span>
-                Essentials{" "}
-                <p className="ms-4 mb-0">Lorem ipsum dolor sit amet.</p>
-              </span>
-              <input type="checkbox" className="me-3 mt-3" placeholder="gh" />
-              <span>WiFi</span>
-              <br></br>
-              <input type="checkbox" className="me-3 mt-3" placeholder="gh" />
-              <span>Tv</span>
-              <br></br>
-              <input type="checkbox" className="me-3 mt-3" placeholder="gh" />
-              <span>Air-conditionding</span>
+            <form
+              onSubmit={(e: any) => {
+                e.preventDefault();
+                AmenitiesUpdate();
+              }}>
+              {Arraylist.map((res) => {
+                return (
+                  <>
+                    <input
+                      type={`checkbox`}
+                      className="me-3"
+                      id="checkbox"
+                      placeholder="gh"
+                      // checked={ischecked}
+                      value={[res]}
+                      onChange={(e: any) => setAmenities(e.target.checked)}
+                    />
+                    {res}
+                    <br></br>
+                  </>
+                );
+              })}
+              {/* <input
+                type="checkbox"
+                className="me-3"
+                placeholder="gh"
+                id="checkbox"
+                ref={inputRef}
+                value={amenities.amenities1}
+              />
+              <label>Essentials </label> */}
+              {/* <br></br>
+              <input
+                type="checkbox"
+                className="me-3 mt-3 checkbox"
+                id="checkbox"
+                placeholder="gh"
+                ref={inputRef1}
+                value="Wifi"
+              />
 
-              <p className="mt-5">
+              <label>WiFi</label> */}
+              {/* <br></br>
+              <input
+                type="checkbox"
+                className="me-3 mt-3"
+                id="checkbox"
+                value="Tv"
+                placeholder="gh"
+              />
+              <label
+                onClick={() => {
+                 
+                }}>
+                Tv
+              </label> */}
+              <br></br>
+              {/* <input
+                type="checkbox"
+                className="me-3 mt-3 checkbox"
+                placeholder="gh"
+                id="checkbox"
+                onChange={(e: any) => {
+                  setAmenities(e.target.value);
+                }}
+               
+              />
+              <label>Air-conditionding</label> */}
+
+              {/* <p className="mt-5">
                 <b>Saftely Amenities</b>
               </p>
-              <input type="checkbox" className="me-3" placeholder="gh" />
-              <span>
+              <input
+                type="checkbox"
+                className="me-3 checkbox"
+                placeholder="gh"
+              />
+              <label>
                 Smoke detector{" "}
-                <p className="ms-4 mb-0">Lorem ipsum dolor sit amet.</p>
-              </span>
-              <br></br>
-              <input type="checkbox" className="me-3" placeholder="gh" />
-              <span>
+               
+              </label> */}
+              {/* <br></br>
+              <input
+                type="checkbox"
+                className="me-3 checkbox"
+                placeholder="gh"
+              />
+              <label>
                 Carbon monooxide detector{" "}
-                <p className="ms-4 mb-0">Lorem ipsum dolor sit amet.</p>
-              </span>
-              <br></br>
-              <input type="checkbox" className="me-3" placeholder="gh" />
-              <span>
+             
+              </label> */}
+              {/* <br></br>
+              <input
+                type="checkbox"
+               
+                className="me-3 checkbox"
+                placeholder="gh"
+              />
+              <label>
                 First aid kit
-                <p className="ms-4 mb-0">Lorem ipsum dolor sit amet.</p>
-              </span>
+              
+              </label> */}
               <hr className="mt-5" />
               <div className="row mt-2">
                 <div
@@ -61,7 +159,11 @@ function CreateStallAmenities() {
                   <i className="bi bi-chevron-left"></i>Back
                 </div>
                 <div className="col-4 ms-auto">
-                  <button className="btn btn-success border-0">
+                  <button
+                    type="submit"
+                    className="btn btn-success border-0"
+                    // onClick={AmenitiesUpdate}
+                  >
                     <Link to="/createstallstep6">
                       <span className="text-white">Next</span>
                     </Link>

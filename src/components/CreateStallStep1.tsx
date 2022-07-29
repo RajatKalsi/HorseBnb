@@ -8,12 +8,12 @@ function CreateStallStep1() {
   henceforthApi.setToken(localStorage.getItem("token"));
   const [stall, setStall] = useState("");
   const [title, setTitle] = useState();
-  const [shortMonthly, setShortMonthly] = useState({});
+  const [shortMonthly, setShortMonthly] = useState();
   const TitlePost = async () => {
     let res = await henceforthApi.Auth.postTitle({
       title: title,
       publicData: {
-        type: "1",
+        type: shortMonthly,
         stepCompleted: [1],
       },
     });
@@ -36,6 +36,7 @@ function CreateStallStep1() {
             <select
               className="form-select mt-3"
               aria-label="Default select example"
+              value={shortMonthly}
               onChange={(e: any) => {
                 setShortMonthly(e.target.value);
               }}>

@@ -25,7 +25,7 @@ function CreateStallStep3() {
       id: localStorage.getItem("id"),
       availabilityPlan: { type: "availability-Plan/day" },
       publicData: {
-        guests: "0",
+        guests: count1,
         property_subtype: "2",
         property_type: "2",
         stalls: count,

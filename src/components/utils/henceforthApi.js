@@ -58,6 +58,7 @@ const Auth = {
   updatePassword: (info) => requests.post("/current_user/update_profile", info),
   postTitle: (info) => requests.post("/own_listings/create_draft", info),
   stallUpdate: (info) => requests.post("/own_listings/update", info),
+  amenitiesUpdate: (info) => requests.post("/own_listings/update", info),
 };
 
 // const Auth = {

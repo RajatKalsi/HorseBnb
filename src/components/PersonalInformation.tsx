@@ -121,7 +121,7 @@ function PersonalInformation() {
   const Getprofile = async () => {
     let res = await henceforthApi.Auth.getprofile();
     localStorage.setItem("id", res.data.id.uuid);
-    // console.log(res.data.id.uuid);
+    console.log(res.data.id.uuid);
     setEditUserName(res.data.attributes.profile.firstName);
     setEmail(res.data.attributes.email);
     setGender(res.data.attributes.profile.publicData.gender);
