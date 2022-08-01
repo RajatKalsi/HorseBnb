@@ -30,11 +30,23 @@ function CreateStallAmenities() {
     //   console.log("error");
     // }
   };
-  let checkbox = document.getElementById("checkbox") as HTMLInputElement | null;
-  if (checkbox?.checked) {
-  } else {
-    console.log("value is unchecked");
+  let amenitiesChange=(e:any)=>{
+    // let data=e.target
+const{value,checked}=e.target
+if(checked){
+  setAmenities(...amenities as [],value)
+}
+else{
+  // setAmenities(amenities.filter((e:any)=>{e !==value}))
+}
+// setAmenities(...amenities as[],value)
+console.log(value,checked)
   }
+  // let checkbox = document.getElementById("checkbox") as HTMLInputElement | null;
+  // if (checkbox?.checked) {
+  // } else {
+  //   console.log("value is unchecked");
+  // }
   return (
     <div className="section">
       <div className="container">
@@ -52,7 +64,7 @@ function CreateStallAmenities() {
                 e.preventDefault();
                 AmenitiesUpdate();
               }}>
-              {Arraylist.map((res) => {
+              {/* {Arraylist.map((res) => {
                 return (
                   <>
                     <input
@@ -62,59 +74,67 @@ function CreateStallAmenities() {
                       placeholder="gh"
                       // checked={ischecked}
                       value={[res]}
-                      onChange={(e: any) => setAmenities(e.target.checked)}
+                      onChange={(e: any) => setAmenities(e)}
                     />
                     {res}
                     <br></br>
                   </>
                 );
-              })}
-              {/* <input
+              })} */}
+              <input
                 type="checkbox"
                 className="me-3"
                 placeholder="gh"
                 id="checkbox"
-                ref={inputRef}
-                value={amenities.amenities1}
+                // ref={inputRef}
+                value="wifi"
+                onChange={(e: any) => {
+                  amenitiesChange(e);
+                }}
               />
-              <label>Essentials </label> */}
-              {/* <br></br>
+              <label>Essentials </label>
+              <br></br>
               <input
                 type="checkbox"
                 className="me-3 mt-3 checkbox"
                 id="checkbox"
                 placeholder="gh"
-                ref={inputRef1}
-                value="Wifi"
+                // ref={inputRef1}
+                value="essential"
+                onChange={(e: any) => {
+                  amenitiesChange(e);
+                }}
               />
 
-              <label>WiFi</label> */}
-              {/* <br></br>
+              <label>WiFi</label>
+              <br></br>
               <input
                 type="checkbox"
                 className="me-3 mt-3"
                 id="checkbox"
                 value="Tv"
                 placeholder="gh"
+                onChange={(e: any) => {
+                  amenitiesChange(e);
+                }}
               />
               <label
-                onClick={() => {
-                 
-                }}>
+               >
                 Tv
-              </label> */}
+              </label>
               <br></br>
-              {/* <input
+              <input
                 type="checkbox"
                 className="me-3 mt-3 checkbox"
                 placeholder="gh"
                 id="checkbox"
+                value="air"
                 onChange={(e: any) => {
-                  setAmenities(e.target.value);
+                  amenitiesChange(e);
                 }}
                
               />
-              <label>Air-conditionding</label> */}
+              <label>Air-conditionding</label>
 
               {/* <p className="mt-5">
                 <b>Saftely Amenities</b>
