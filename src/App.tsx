@@ -44,6 +44,7 @@ import HostExperienceGroup from "./components/HostExperienceGroup";
 // import InitMap from "./components/GoogleMap";
 import Loading from "./components/Loading";
 import { GoogleMap } from "@react-google-maps/api";
+import CreateTimingstep from "./components/CreateTimingstep";
 
 function App() {
   return (
@@ -111,6 +112,7 @@ function App() {
           <Route path="/createstallstep6" element={<CreateStallStep6 />} />
           <Route path="/createstallstep7" element={<CreateStallStep7 />} />
           <Route path="/createstallstep11" element={<CreateStallStep11 />} />
+          <Route path="/createtimingstep" element={<CreateTimingstep />} />
           <Route path="/createstallstep12" element={<CreateStallStep12 />} />
           <Route path="/createstallstep13" element={<CreateStallStep13 />} />
           <Route path="/createstallstep14" element={<CreateStallStep14 />} />
@@ -128,6 +130,7 @@ function App() {
         {/* <HostanExperienceStep1/> */}
         {/* <HostExperienceGroup/> */}
         {/* <InitMap /> */}
+        {/* <CreateTimingstep /> */}
       </Router>
     </div>
   );

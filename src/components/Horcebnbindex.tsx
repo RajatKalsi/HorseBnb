@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import logo from "../images/other/logo.svg";
 import horseimg from "../images/other/horseimg.png";
 import monthly from "../images/other/monthly.png";
@@ -12,6 +12,7 @@ import Header from "./Header";
 import { Link } from "react-router-dom";
 import AfterloginModal from "./AfterloginHeader";
 import AfterloginHeader from "./AfterloginHeader";
+import henceforthApi from "./utils/henceforthApi";
 // import Modals from "./Modals";
 
 function Horsebnbindex() {
@@ -19,6 +20,7 @@ function Horsebnbindex() {
   const [monthlyShow, setMonthlyShow] = useState(false);
   const [horseexperienceShow, setHorseexperienceShow] = useState(false);
   const [showHeader, setShowHeader] = useState(true);
+  const [data, setData] = useState([] as any);
 
   const ShorttermPost = () => {
     setMonthlyShow(false);
@@ -35,6 +37,14 @@ function Horsebnbindex() {
     setMonthlyShow(false);
     setHorseexperienceShow(true);
   };
+  const GetProfileApi = async () => {
+    let res = await henceforthApi.Auth.getprofileapi();
+    setData(res.data);
+    console.log(res.data);
+  };
+  useEffect(() => {
+    GetProfileApi();
+  }, []);
   return (
     // Navbar
     <div className="container-fluid">
@@ -213,6 +223,7 @@ function Horsebnbindex() {
       )}
 
       {/* 3 image section  */}
+
       <section className="mt-5">
         <div className="container">
           <div className="row text-start">
@@ -230,6 +241,16 @@ function Horsebnbindex() {
                 height="200px"
                 width="350px"
               />
+              <div className="row shadow">
+                <div className="col-5">
+                  <p className="mt-2">
+                    <b>Short term Stalls</b>
+                  </p>
+                </div>
+                <div className="col-3 mt-2 offset-4">
+                  <i className="bi bi-arrow-right"></i>
+                </div>
+              </div>
             </div>
             <div className="col-4">
               <img
@@ -238,6 +259,16 @@ function Horsebnbindex() {
                 height="200px"
                 width="350px"
               />
+              <div className="row shadow">
+                <div className="col-5">
+                  <p className="mt-2 ">
+                    <b>Monthly Board</b>
+                  </p>
+                </div>
+                <div className="col-3 mt-2 offset-4">
+                  <i className="bi bi-arrow-right"></i>
+                </div>
+              </div>
             </div>
             <div className="col-4">
               <img
@@ -246,6 +277,16 @@ function Horsebnbindex() {
                 height="200px"
                 width="350px"
               />
+              <div className="row shadow">
+                <div className="col-6">
+                  <p className="mt-2">
+                    <b>Guest Accomodation</b>
+                  </p>
+                </div>
+                <div className="col-2 mt-2 offset-4">
+                  <i className="bi bi-arrow-right"></i>
+                </div>
+              </div>
             </div>
           </div>
         </div>

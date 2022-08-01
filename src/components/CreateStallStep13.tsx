@@ -1,8 +1,14 @@
-import React from "react";
+import React, { useState } from "react";
 import lightbulb from "../images/other/lightbulb.png";
-import {Link} from "react-router-dom"
+import { Link } from "react-router-dom";
+import henceforthApi from "./utils/henceforthApi";
 
 function CreateStallStep13() {
+  const [price, setPrice] = useState("");
+  henceforthApi.setToken(localStorage.getItem("token"));
+  const PriceUpdate = async () => {
+    let res = await henceforthApi.Auth.priceUpdate();
+  };
   return (
     <div className="container">
       <div className="row">
@@ -23,15 +29,34 @@ function CreateStallStep13() {
             <small>This will be your default price</small>
           </p>
           <form>
-            <input type="text" placeholder="$" alt="" className="w-50 form-control"/>
+            <input
+              type="text"
+              placeholder="$"
+              value={price}
+              onChange={(e) => {
+                setPrice(e.target.value);
+              }}
+              alt=""
+              className="w-50 form-control"
+            />
           </form>
           <hr className="mt-5" />
           <div className="row mt-2 mb-4">
-            <div className="col-4 me-auto text-danger" onClick={()=>{window.history.back()}}>
+            <div
+              className="col-4 me-auto text-danger"
+              onClick={() => {
+                window.history.back();
+              }}>
               <i className="bi bi-chevron-left"></i>Back
             </div>
             <div className="col-4 ms-auto">
-              <button className="btn btn-success border-0 me-4"><Link to="/createstallstep14"><span className="text-white">Next</span></Link></button>
+              <button className="btn btn-success border-0 me-4">
+                <Link to="/createstallstep14">
+                  <span className="text-white" onClick={PriceUpdate}>
+                    Next
+                  </span>
+                </Link>
+              </button>
             </div>
           </div>
         </div>

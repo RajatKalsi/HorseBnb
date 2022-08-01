@@ -59,6 +59,12 @@ const Auth = {
   postTitle: (info) => requests.post("/own_listings/create_draft", info),
   stallUpdate: (info) => requests.post("/own_listings/update", info),
   amenitiesUpdate: (info) => requests.post("/own_listings/update", info),
+  profileUpdate: (info) => requests.post("/upload/aws?storageType=5&environment=4&isDefaultAsset=0", info),
+  DescriptionUpdate: (info) => requests.post("/own_listings/update", info),
+  timingUpdate: (info) => requests.post("/own_listings/update", info),
+  checktrue: (info) => requests.post("/own_listings/update", info),
+  priceUpdate: (info) => requests.post("/own_listings/update", info),
+  getprofileapi: (info, header) => requests.get("/listings/query?pub_type=1&perPage=8&page=1", info),
 };
 
 // const Auth = {

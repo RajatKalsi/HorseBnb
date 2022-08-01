@@ -4,10 +4,55 @@ import lightbulb from "../images/other/lightbulb.png";
 import "./horsebnb.css";
 import { Link } from "react-router-dom";
 import { useRef } from "react";
+import henceforthApi from "./utils/henceforthApi";
+import axios from "axios";
 
 function CreateStallStep6() {
   const inputRef = useRef(null);
-  const [image, setImage] = useState(null);
+  const [image, setImage] = useState("");
+  henceforthApi.setToken(localStorage.getItem("token"));
+
+  const ProfileUpload = async () => {
+    const formData = new FormData();
+    formData.append("file", image as any);
+    let res = await axios.post(
+      "https://horsebnb.com:3001/v1/api/upload/aws?storageType=5&environment=4&isDefaultAsset=0",
+      formData,
+      {
+        headers: {
+          "Content-Type": "multipart/form-data",
+          // Authorization: localStorage.getItem("token"),
+        },
+      }
+    );
+    let filename = res.data.filename;
+    let id = res.data.id;
+    await UploadImage(id, filename);
+  };
+  let tkn = localStorage.getItem("token");
+  const UploadImage = async (id: any, filename: any) => {
+    let data = {
+      id: localStorage.getItem("id"),
+      images: [`${id}`],
+      publicData: {
+        cover_photo: {
+          id: id,
+          images: [],
+          url: filename,
+          caption: null,
+        },
+      },
+    };
+    let res = await axios.post(
+      "https://horsebnb.com:3001/v1/api/own_listings/update",
+      data,
+      {
+        headers: {
+          Authorization: `` + localStorage.getItem("token"),
+        },
+      }
+    );
+  };
   return (
     <div className="section">
       <div className="container">
@@ -39,7 +84,7 @@ function CreateStallStep6() {
                 onChange={(e: any) => {
                   setImage(e.target.files[0]);
                 }}
-                style={{ display: "none" }}
+                // style={{ display: "none" }}
               />
               {/* <div className="row">
                 <div className="col-6">
@@ -96,7 +141,9 @@ function CreateStallStep6() {
 
           <div className="row">
             <div className="col-6">
-              <img src={image ? URL.createObjectURL(image) : ""} alt=""></img>
+              <img
+                src={image ? URL.createObjectURL(image as any) : ""}
+                alt=""></img>
             </div>
             <div className="col-6">
               {/* <img src="" alt=""></img> */}
@@ -116,7 +163,9 @@ function CreateStallStep6() {
               <button className="btn btn-success border-0">Skip for now</button>
               <button className="btn btn-success border-0" type="submit">
                 <Link to="/createstallstep7">
-                  <span className="text-white">Next</span>
+                  <span className="text-white" onClick={ProfileUpload}>
+                    Next
+                  </span>
                 </Link>
               </button>
             </div>

@@ -17,12 +17,26 @@ function CreateStallAmenities() {
   for (let checkbox in k) {
     // if(checkbox.checked==true)
   }
+
+  let amenitiesChange = (e: any) => {
+    // let data=e.target
+    const { value, checked } = e.target;
+    if (checked) {
+      setAmenities(...(amenities as []), value);
+    } else {
+      // setAmenities(amenities.filter((e:any)=>{e !==value}))
+    }
+    // setAmenities(...amenities as[],value)
+    let k = value;
+    // AmenitiesUpdate(k);
+  };
+
   // let checkvalue = document.getElementById("checkbox").value;
-  const AmenitiesUpdate = () => {
+  const AmenitiesUpdate = (k: any) => {
     // console.log(amenities);
     let res = henceforthApi.Auth.amenitiesUpdate({
       id: localStorage.getItem("id"),
-      amenities: amenities,
+      amenities: [k],
     });
     // if (amenities != null) {
     //   console.log("hello");
@@ -30,18 +44,17 @@ function CreateStallAmenities() {
     //   console.log("error");
     // }
   };
-  let amenitiesChange=(e:any)=>{
-    // let data=e.target
-const{value,checked}=e.target
-if(checked){
-  setAmenities(...amenities as [],value)
-}
-else{
-  // setAmenities(amenities.filter((e:any)=>{e !==value}))
-}
-// setAmenities(...amenities as[],value)
-console.log(value,checked)
-  }
+  // let amenitiesChange = (e: any) => {
+  //   // let data=e.target
+  //   const { value, checked } = e.target;
+  //   if (checked) {
+  //     setAmenities(...(amenities as []), value);
+  //   } else {
+  //     // setAmenities(amenities.filter((e:any)=>{e !==value}))
+  //   }
+  //   // setAmenities(...amenities as[],value)
+  //   let k = { value, checked };
+  // };
   // let checkbox = document.getElementById("checkbox") as HTMLInputElement | null;
   // if (checkbox?.checked) {
   // } else {
@@ -62,7 +75,7 @@ console.log(value,checked)
             <form
               onSubmit={(e: any) => {
                 e.preventDefault();
-                AmenitiesUpdate();
+                AmenitiesUpdate(k);
               }}>
               {/* {Arraylist.map((res) => {
                 return (
@@ -118,10 +131,7 @@ console.log(value,checked)
                   amenitiesChange(e);
                 }}
               />
-              <label
-               >
-                Tv
-              </label>
+              <label>Tv</label>
               <br></br>
               <input
                 type="checkbox"
@@ -132,7 +142,6 @@ console.log(value,checked)
                 onChange={(e: any) => {
                   amenitiesChange(e);
                 }}
-               
               />
               <label>Air-conditionding</label>
 
