@@ -45,6 +45,9 @@ import HostExperienceGroup from "./components/HostExperienceGroup";
 import Loading from "./components/Loading";
 import { GoogleMap } from "@react-google-maps/api";
 import CreateTimingstep from "./components/CreateTimingstep";
+import ShorttermStalls from "./components/ShorttermStalls";
+import SearchWithoutMap from "./components/SearchWithoutMap";
+import ShortTermDetailspost from "./components/ShortTermDetailspost";
 
 function App() {
   return (
@@ -85,14 +88,15 @@ function App() {
       {/* <CreateStallStep15 /> */}
       {/* <Extrafile /> */}
       {/* <HostanExperience/> */}
-      {/* <HostExperienceLocation/> */}
+      {/* <HostExperienceLocation /> */}
       {/* <Loading /> */}
       {/* <Header /> */}
       {/* <GoogleMap /> */}
+      {/* <ShorttermStalls /> */}
 
       <Router>
         <Routes>
-          <Route path="/" element={<Horsebnbindex />} />
+          {/* <Route path="/" element={<Horsebnbindex />} /> */}
           {/* <Route path="/header" element={<Header />} /> */}
           <Route path="/hoststalls" element={<HostStalls />} />
           <Route path="/createstallstep1" element={<CreateStallStep1 />} />
@@ -131,6 +135,8 @@ function App() {
         {/* <HostExperienceGroup/> */}
         {/* <InitMap /> */}
         {/* <CreateTimingstep /> */}
+        {/* <SearchWithoutMap /> */}
+        <ShortTermDetailspost />
       </Router>
     </div>
   );
