@@ -1,10 +1,34 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import map from "../images/other/map.png";
 import on from "../images/other/on.png";
 import off from "../images/other/off.png";
 import Map from "./Mapfull";
+import henceforthApi from "./utils/henceforthApi";
+import { Link } from "react-router-dom";
 
 function ShorttermStalls() {
+  const [data, setData] = useState([]);
+  const [texts, setTexts] = useState(true);
+
+  henceforthApi.setToken(localStorage.getItem("token"));
+  const ShortTermList = async () => {
+    let res = await henceforthApi.Auth.getListing();
+    console.log(res.data);
+    setData(res.data);
+  };
+  const ellipsis = (text: any, count: any) => {
+    return text && count
+      ? text.slice(0, count) + (text.length > count ? "..." : "")
+      : "";
+  };
+  useEffect(() => {
+    // GetProfileApi();
+    ShortTermList();
+  }, []);
+  let text =
+    "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iste, sapiente?";
+  let s = text.slice(0, 5);
+  console.log(s);
   return (
     <div className="section">
       <div className="container-fluid">
@@ -68,7 +92,44 @@ function ShorttermStalls() {
 
             <div className="container">
               <div className="row">
-                <div className="col-4">
+                {/* <Link to="/shorttermdetailpost"> */}
+                {data.map((item: any, index: any) => {
+                  return (
+                    <>
+                      <Link to="/shorttermdetailpost" className="text-black">
+                        <div className="col-4" key={index}>
+                          <img
+                            src={item.attributes.publicData.cover_photo.url}
+                            height="230px"
+                            width="200px"
+                            alt=""
+                          />
+                        </div>
+                        <div className="col-7 ms-3 mt-3">
+                          <div className="row">
+                            <b>{item.attributes.title}</b>
+                          </div>
+                          <div className="row mt-2 mb-5">
+                            {item.attributes.description}
+                            <span>....</span>
+                          </div>
+                          <div className="row mt-5 ">
+                            <div className="col-4">
+                              ${item.attributes.price.amount}/Night
+                            </div>
+                            <div className="col-8 ms-auto">
+                              <button className="btn btn-success">
+                                View Details{" "}
+                              </button>
+                            </div>
+                          </div>
+                        </div>
+                      </Link>
+                    </>
+                  );
+                })}
+                {/* </Link> */}
+                {/* <div className="col-4">
                   <img
                     src="https://a-z-animals.com/media/horse-3.jpg"
                     height="230px"
@@ -87,7 +148,7 @@ function ShorttermStalls() {
                       <button className="btn btn-success">View Details </button>
                     </div>
                   </div>
-                </div>
+                </div> */}
               </div>
             </div>
           </div>

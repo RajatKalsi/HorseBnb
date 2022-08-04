@@ -53,7 +53,7 @@ const Auth = {
   forgotPassword: (info) => requests.post("forgot-password", info),
   checkOtp: (info) => requests.post("check-email-otp", info),
   resetPassword: (info) => requests.post("reset/password", info),
-  getprofile: (info, header) => requests.get("/current_user/show", info),
+  getprofile: (info) => requests.get("/current_user/show", info),
   changePassword: (info) => requests.put("admin/change-password", info),
   updatePassword: (info) => requests.post("/current_user/update_profile", info),
   postTitle: (info) => requests.post("/own_listings/create_draft", info),
@@ -65,6 +65,7 @@ const Auth = {
   checktrue: (info) => requests.post("/own_listings/update", info),
   priceUpdate: (info) => requests.post("/own_listings/update", info),
   getprofileapi: (info, header) => requests.get("/listings/query?pub_type=1&perPage=8&page=1", info),
+  getListing: (info) => requests.get("/listings/query?perPage=5&page=2&bounds=30&pub_type=1&start=1&end=5", info),
 };
 
 // const Auth = {

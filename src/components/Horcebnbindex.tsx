@@ -39,12 +39,19 @@ function Horsebnbindex() {
   };
   const GetProfileApi = async () => {
     let res = await henceforthApi.Auth.getprofileapi();
-    setData(res.data);
+    // setData(res.data);
+    // console.log(res.data);
+  };
+  const ShortTermList = async () => {
+    let res = await henceforthApi.Auth.getListing();
     console.log(res.data);
+    setData(res.data);
   };
   useEffect(() => {
     GetProfileApi();
+    ShortTermList();
   }, []);
+
   return (
     // Navbar
     <div className="container-fluid">
@@ -233,25 +240,35 @@ function Horsebnbindex() {
           </div>
         </div>
         <div className="container">
+          {/* <Link></Link> */}
           <div className="row">
+            {/* <Link to="/shorttermstalls"> */}
             <div className="col-4">
-              <img
-                src="https://a-z-animals.com/media/horse-3.jpg"
-                alt=""
-                height="200px"
-                width="350px"
-              />
+              <Link to="/shorttermstalls">
+                {" "}
+                <img
+                  src="https://a-z-animals.com/media/horse-3.jpg"
+                  alt=""
+                  height="200px"
+                  width="350px"
+                />
+              </Link>
               <div className="row shadow">
-                <div className="col-5">
-                  <p className="mt-2">
-                    <b>Short term Stalls</b>
-                  </p>
-                </div>
-                <div className="col-3 mt-2 offset-4">
-                  <i className="bi bi-arrow-right"></i>
-                </div>
+                <Link to="/shorttermstalls">
+                  {" "}
+                  <div className="col-5">
+                    <p className="mt-2">
+                      <b>Short term Stalls</b>
+                    </p>
+                  </div>
+                  <div className="col-3 mt-2 offset-4">
+                    <i className="bi bi-arrow-right"></i>
+                  </div>
+                </Link>
               </div>
             </div>
+            {/* </Link> */}
+            {/* <Link to=""> */}
             <div className="col-4">
               <img
                 src="https://www.nobroker.in/blog/wp-content/uploads/2022/02/7-running-horses-vastu.jpg"
@@ -270,6 +287,7 @@ function Horsebnbindex() {
                 </div>
               </div>
             </div>
+            {/* </Link> */}
             <div className="col-4">
               <img
                 src="https://static8.depositphotos.com/1001374/965/i/600/depositphotos_9652329-stock-photo-black-horse-gallop.jpg"

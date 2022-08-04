@@ -96,7 +96,7 @@ function App() {
 
       <Router>
         <Routes>
-          {/* <Route path="/" element={<Horsebnbindex />} /> */}
+          <Route path="/" element={<Horsebnbindex />} />
           {/* <Route path="/header" element={<Header />} /> */}
           <Route path="/hoststalls" element={<HostStalls />} />
           <Route path="/createstallstep1" element={<CreateStallStep1 />} />
@@ -123,6 +123,10 @@ function App() {
           <Route path="/createstallstep15" element={<CreateStallStep15 />} />
           <Route path="/hostanexperience" element={<HostanExperience />} />
           <Route
+            path="/shorttermdetailpost"
+            element={<ShortTermDetailspost />}
+          />
+          <Route
             path="/hostanexperiencestep1"
             element={<HostanExperienceStep1 />}
           />
@@ -130,13 +134,14 @@ function App() {
             path="/hostexperiencelocation"
             element={<HostExperienceLocation />}
           />
+          <Route path="/shorttermstalls" element={<ShorttermStalls />} />
         </Routes>
         {/* <HostanExperienceStep1/> */}
         {/* <HostExperienceGroup/> */}
         {/* <InitMap /> */}
         {/* <CreateTimingstep /> */}
         {/* <SearchWithoutMap /> */}
-        <ShortTermDetailspost />
+        {/* <ShortTermDetailspost /> */}
       </Router>
     </div>
   );
