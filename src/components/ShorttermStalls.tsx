@@ -21,14 +21,13 @@ function ShorttermStalls() {
       ? text.slice(0, count) + (text.length > count ? "..." : "")
       : "";
   };
+
   useEffect(() => {
     // GetProfileApi();
     ShortTermList();
   }, []);
-  let text =
-    "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iste, sapiente?";
-  let s = text.slice(0, 5);
-  console.log(s);
+  let imageurl =
+    "https://horsebnb.s3.us-east-2.amazonaws.com/Uploads/Images/Small/";
   return (
     <div className="section">
       <div className="container-fluid">
@@ -96,35 +95,45 @@ function ShorttermStalls() {
                 {data.map((item: any, index: any) => {
                   return (
                     <>
-                      <Link to="/shorttermdetailpost" className="text-black">
-                        <div className="col-4" key={index}>
-                          <img
-                            src={item.attributes.publicData.cover_photo.url}
-                            height="230px"
-                            width="200px"
-                            alt=""
-                          />
+                      {/* <Link to="/shorttermdetailpost" className="text-black"> */}
+                      <div className="col-4" key={index}>
+                        <img
+                          src={`${imageurl}${item.attributes?.publicData?.cover_photo?.url}`}
+                          height="230px"
+                          width="200px"
+                          alt=""
+                        />
+                      </div>
+                      <div className="col-7 ms-3 mt-3">
+                        <div className="row">
+                          <b>{item.attributes.title}</b>
                         </div>
-                        <div className="col-7 ms-3 mt-3">
-                          <div className="row">
-                            <b>{item.attributes.title}</b>
+                        <div className="row mt-2 mb-5">
+                          {item.attributes?.description?.length > 100
+                            ? `${item.attributes?.description?.slice(
+                                0,
+                                100
+                              )}...`
+                            : item.attributes?.description}
+                          {/* <span>....</span> */}
+                        </div>
+                        <div className="row mt-5 ">
+                          <div className="col-4">
+                            ${item.attributes.price.amount}/Night
                           </div>
-                          <div className="row mt-2 mb-5">
-                            {item.attributes.description}
-                            <span>....</span>
-                          </div>
-                          <div className="row mt-5 ">
-                            <div className="col-4">
-                              ${item.attributes.price.amount}/Night
-                            </div>
-                            <div className="col-8 ms-auto">
+                          <div className="col-8 ms-auto">
+                            <Link
+                              to="/shorttermdetailpost"
+                              className="text-black">
                               <button className="btn btn-success">
                                 View Details{" "}
                               </button>
-                            </div>
+                            </Link>
                           </div>
                         </div>
-                      </Link>
+                      </div>
+                      <hr className="mt-2" />
+                      {/* </Link> */}
                     </>
                   );
                 })}

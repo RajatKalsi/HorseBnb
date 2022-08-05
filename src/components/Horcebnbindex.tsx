@@ -48,7 +48,7 @@ function Horsebnbindex() {
     setData(res.data);
   };
   useEffect(() => {
-    GetProfileApi();
+    // GetProfileApi();
     ShortTermList();
   }, []);
 

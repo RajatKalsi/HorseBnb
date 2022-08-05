@@ -1,12 +1,26 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import sparkling from "../images/other/sparklingclean.png";
 import entirebarn from "../images/other/entirebarn.png";
 import cancellationpolicy from "../images/other/cancellationpolicy.png";
 import star from "../images/other/star.png";
 import security from "../images/other/security.png";
 import horseone from "../images/other/horse_one.png";
+import henceforthApi from "./utils/henceforthApi";
+// import { useState } from "react";
 
 function ShortTermDetailspost() {
+  henceforthApi.setToken(localStorage.getItem("token"));
+  const [data, setData] = useState([]);
+  const HostListing = async () => {
+    let res = await henceforthApi.Auth.hostListing();
+    setData(res.data);
+    console.log(res.data);
+  };
+  useEffect(() => {
+    HostListing();
+  }, []);
+  let imageurl =
+    "https://horsebnb.s3.us-east-2.amazonaws.com/Uploads/Images/Small/";
   return (
     <div className="section">
       <div className="container">
@@ -21,24 +35,27 @@ function ShortTermDetailspost() {
           </div>
         </div>
         <div className="row mt-3">
-          <div className="col-6">
-            <img
-              src="https://a-z-animals.com/media/horse-3.jpg"
-              alt=""
-              className="image-fluid w-100"
-              height="310px"
-              width="470px"
-            />
-          </div>
-          <div className="col-6">
-            <img
-              src="https://a-z-animals.com/media/horse-3.jpg"
-              alt=""
-              className="image-fluid w-100"
-              height="310px"
-              //   width="470px"
-            />
-          </div>
+          {/* <div className="col-6"> */}
+          {data.map((item: any) => {
+            return (
+              <>
+                <div className="col-6">
+                  <img
+                    src={`${imageurl}${item.cover_photo}`}
+                    alt=""
+                    className="image-fluid "
+                    height="310px"
+                    width="470px"
+                  />
+                  <br></br>
+                  <br></br>
+                  {/* <div className="col-3">52</div> */}
+                </div>
+              </>
+            );
+          })}
+          {/* </div> */}
+          <div className="col-6"></div>
         </div>
         <div className="row">
           <div className="col-7 me-auto">
@@ -106,14 +123,22 @@ function ShortTermDetailspost() {
             <div className="row">
               <span className="text-start">
                 <h3>Description</h3>
+                {data.map((item: any) => {
+                  return (
+                    <>
+                      <p className="text-start mb-0">{item.description}</p>
+                      {/* <h3>{item.description}</h3> */}
+                    </>
+                  );
+                })}
               </span>
-              <p className="text-start mb-0">Lorem ipsum dolor sit amet.</p>
+              {/* <p className="text-start mb-0">Lorem ipsum dolor sit amet.</p>
               <p className="text-start">
                 Lorem ipsum dolor sit, amet consectetur adipisicing elit.
-              </p>
+              </p> */}
             </div>
             <form>
-              <div className="row">
+              <div className="row mt-3">
                 <h4>Select check-in date</h4>
 
                 <div className="col-4">

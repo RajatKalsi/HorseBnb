@@ -6,10 +6,10 @@ const superagent = superagentPromise(_superagent, global.Promise);
 const API_ROOT = "https://horsebnb.com:3001/v1/api";
 
 const BUCKET_ROOT =
-  "https://stagingacriamarket.s3.eu-central-1.amazonaws.com/uploads/"; //live
-const API_FILE_ROOT_MEDIUM = `${BUCKET_ROOT}images/medium/`;
-const API_FILE_ROOT_ORIGINAL = `${BUCKET_ROOT}images/original/`;
-const API_FILE_ROOT_SMALL = `${BUCKET_ROOT}images/small/`;
+  "https://horsebnb.s3.us-east-2.amazonaws.com/Uploads/"; //live
+const API_FILE_ROOT_MEDIUM = `${BUCKET_ROOT}Images/Medium/`;
+const API_FILE_ROOT_ORIGINAL = `${BUCKET_ROOT}Images/Original/`;
+const API_FILE_ROOT_SMALL = `${BUCKET_ROOT}Images/Small/`;
 const API_FILE_ROOT_AUDIO = `${BUCKET_ROOT}audio/`;
 const API_FILE_ROOT_VIDEO = `${BUCKET_ROOT}video/`;
 const API_FILE_ROOT_DOCUMENTS = `${BUCKET_ROOT}documents/`;
@@ -66,6 +66,7 @@ const Auth = {
   priceUpdate: (info) => requests.post("/own_listings/update", info),
   getprofileapi: (info, header) => requests.get("/listings/query?pub_type=1&perPage=8&page=1", info),
   getListing: (info) => requests.get("/listings/query?perPage=5&page=2&bounds=30&pub_type=1&start=1&end=5", info),
+  hostListing: (info) => requests.get("/host/listing?host_id=768&perPage=3&page=0", info),
 };
 
 // const Auth = {
