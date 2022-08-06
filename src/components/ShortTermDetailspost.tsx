@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect,useContext, createContext } from "react";
 import sparkling from "../images/other/sparklingclean.png";
 import entirebarn from "../images/other/entirebarn.png";
 import cancellationpolicy from "../images/other/cancellationpolicy.png";
@@ -6,18 +6,30 @@ import star from "../images/other/star.png";
 import security from "../images/other/security.png";
 import horseone from "../images/other/horse_one.png";
 import henceforthApi from "./utils/henceforthApi";
+import { useMatch } from "react-router-dom";
 // import { useState } from "react";
 
 function ShortTermDetailspost() {
   henceforthApi.setToken(localStorage.getItem("token"));
   const [data, setData] = useState([]);
+  const[list,setList]=useState([])
+  const match=useMatch("/shorttermdetailpost/:id");
+  // const userContext=createContext()
   const HostListing = async () => {
     let res = await henceforthApi.Auth.hostListing();
+    // let res1 = await henceforthApi.Auth.showlistingid();
     setData(res.data);
     console.log(res.data);
   };
+  const ShortTermList = async () => {
+    let res = await henceforthApi.Auth.showlistingid(match?.params.id);
+    console.log(res.data);
+    setList(res.data);
+    
+  };
   useEffect(() => {
-    HostListing();
+    HostListing()
+    ShortTermList()
   }, []);
   let imageurl =
     "https://horsebnb.s3.us-east-2.amazonaws.com/Uploads/Images/Small/";
@@ -272,7 +284,7 @@ function ShortTermDetailspost() {
                 />
               </div>
               <div className="col-7 mt-2">
-                <p className="font mb-0 ">Hosted by mohit kumar</p>
+                <p className="font mb-0 ">{data.map((item:any)=>{return(<>{item.title} </>)})}Hosted by mohit kumar</p>
                 <small>Join on 21 Sep 2021 </small>
               </div>
             </div>
@@ -302,7 +314,30 @@ function ShortTermDetailspost() {
           </div>
         </div>
         <div className="row mt-4">
-          <div className="col-4">
+        {data.map((item: any) => {
+            return (
+              <>
+              {/* <userContext.Provider value={data}>
+<ShortTermDetailspost/>
+              </userContext.Provider> */}
+                <div className="col-4">
+                  <img
+                    src={`${imageurl}${item.cover_photo}`}
+                    alt=""
+                    className="image-fluid"
+                    height="290px"
+                    width="350px"
+                  />
+                  <div className="col-4"></div>
+                  <br></br>
+                  <br></br>
+               
+                  <div className="col-3">52</div>
+                </div>
+              </>
+            );
+          })}
+          {/* <div className="col-4">
             <img
               src="https://a-z-animals.com/media/horse-3.jpg"
               alt=""
@@ -315,14 +350,7 @@ function ShortTermDetailspost() {
               alt=""
               className="w-100"
             />
-          </div>
-          <div className="col-4">
-            <img
-              src="https://a-z-animals.com/media/horse-3.jpg"
-              alt=""
-              className="w-100"
-            />
-          </div>
+          </div> */}
         </div>
         <hr />
       </div>

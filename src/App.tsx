@@ -123,7 +123,7 @@ function App() {
           <Route path="/createstallstep15" element={<CreateStallStep15 />} />
           <Route path="/hostanexperience" element={<HostanExperience />} />
           <Route
-            path="/shorttermdetailpost"
+            path="/shorttermdetailpost/:id"
             element={<ShortTermDetailspost />}
           />
           <Route

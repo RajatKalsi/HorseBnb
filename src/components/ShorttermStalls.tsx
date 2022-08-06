@@ -4,17 +4,19 @@ import on from "../images/other/on.png";
 import off from "../images/other/off.png";
 import Map from "./Mapfull";
 import henceforthApi from "./utils/henceforthApi";
-import { Link } from "react-router-dom";
+import { Link,useMatch } from "react-router-dom";
 
 function ShorttermStalls() {
   const [data, setData] = useState([]);
   const [texts, setTexts] = useState(true);
+  const match=useMatch("/shorttermdetailpost/:id")
 
   henceforthApi.setToken(localStorage.getItem("token"));
   const ShortTermList = async () => {
     let res = await henceforthApi.Auth.getListing();
     console.log(res.data);
     setData(res.data);
+    
   };
   const ellipsis = (text: any, count: any) => {
     return text && count
@@ -103,6 +105,7 @@ function ShorttermStalls() {
                           width="200px"
                           alt=""
                         />
+                        
                       </div>
                       <div className="col-7 ms-3 mt-3">
                         <div className="row">
@@ -123,7 +126,7 @@ function ShorttermStalls() {
                           </div>
                           <div className="col-8 ms-auto">
                             <Link
-                              to="/shorttermdetailpost"
+                              to={`/shorttermdetailpost/${item.id.uuid}`}
                               className="text-black">
                               <button className="btn btn-success">
                                 View Details{" "}
