@@ -9,16 +9,22 @@ import { Link,useMatch } from "react-router-dom";
 function ShorttermStalls() {
   const [data, setData] = useState([]);
   const [texts, setTexts] = useState(true);
+  const[monthlydata,setMonthlyData]=useState("")
   const match=useMatch("/shorttermdetailpost/:id")
 
   henceforthApi.setToken(localStorage.getItem("token"));
   const ShortTermList = async () => {
-    let res = await henceforthApi.Auth.getListing();
-    console.log(res.data);
+    let res = await henceforthApi.Auth.getMonthlyList(1);
+    // console.log(res.data);
     setData(res.data);
     
   };
-  const ellipsis = (text: any, count: any) => {
+  const MonthlyList= async()=>{
+   let res=await henceforthApi.Auth.getMonthlyList(2);
+  setData(res.data)
+    console.log(res)
+  }
+  const ellipsis = (text: String, count: number) => {
     return text && count
       ? text.slice(0, count) + (text.length > count ? "..." : "")
       : "";
@@ -26,8 +32,13 @@ function ShorttermStalls() {
 
   useEffect(() => {
     // GetProfileApi();
-    ShortTermList();
+    MonthlyList()
+    ShortTermList()
+    
   }, []);
+  // useEffect(()=>{
+  //   ShortTermList();
+  // })
   let imageurl =
     "https://horsebnb.s3.us-east-2.amazonaws.com/Uploads/Images/Small/";
   return (

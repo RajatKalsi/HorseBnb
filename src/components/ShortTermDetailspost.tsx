@@ -12,7 +12,14 @@ import { useMatch } from "react-router-dom";
 function ShortTermDetailspost() {
   henceforthApi.setToken(localStorage.getItem("token"));
   const [data, setData] = useState([]);
-  const[list,setList]=useState([])
+  const[list, setList]=useState([])
+  const[name,setName]=useState("")
+  const[joindate,setJoindate]=useState("")
+  const[price,setPrice]=useState("")
+  const[showimage,setShowimage]=useState(false)
+  const[description,setDescription]=useState("")
+  const[title,setTitle]=useState("")
+  const[amenites,setAmenities]=useState([])
   const match=useMatch("/shorttermdetailpost/:id");
   // const userContext=createContext()
   const HostListing = async () => {
@@ -22,15 +29,23 @@ function ShortTermDetailspost() {
     console.log(res.data);
   };
   const ShortTermList = async () => {
+    
     let res = await henceforthApi.Auth.showlistingid(match?.params.id);
-    console.log(res.data);
-    setList(res.data);
+    console.log(res.data.attributes.publicData.amenities);
+    setList(res.data.attributes.publicData.cover_photo.url);
+    setName(res.data.attributes.publicData.hosted_by)
+    setJoindate(res.data.attributes.publicData.joined_in)
+    setPrice(res.data.attributes.price.amount)
+    setDescription(res.data.attributes.description)
+    setTitle(res.data.attributes.title)
+    setAmenities(res.data.attributes.publicData.amenities)
     
   };
   useEffect(() => {
     HostListing()
     ShortTermList()
   }, []);
+  let arrayList=Array.from(list)
   let imageurl =
     "https://horsebnb.s3.us-east-2.amazonaws.com/Uploads/Images/Small/";
   return (
@@ -47,33 +62,38 @@ function ShortTermDetailspost() {
           </div>
         </div>
         <div className="row mt-3">
-          {/* <div className="col-6"> */}
-          {data.map((item: any) => {
-            return (
-              <>
-                <div className="col-6">
+         <div className="col-6">
                   <img
-                    src={`${imageurl}${item.cover_photo}`}
+                    src={`${imageurl}${list}`}
                     alt=""
-                    className="image-fluid "
+                    className="image-fluid"
                     height="310px"
                     width="470px"
                   />
-                  <br></br>
-                  <br></br>
-                  {/* <div className="col-3">52</div> */}
-                </div>
-              </>
-            );
-          })}
-          {/* </div> */}
-          <div className="col-6"></div>
+                  </div>
+                  {/* <br></br>
+                  <br></br> */}
+                 
+                  <div className="col-4 bd-dark" style={{height:"310px",width:"470px"}}>
+                  {/* <img
+                    src=""
+                    alt=""
+                    className="image-fluid"
+                    height="310px"
+                    width="470px"
+                  /> */}
+                  g
+                  </div>
+
+                
+            
+         
         </div>
         <div className="row">
           <div className="col-7 me-auto">
             <div className="row">
               <div className="col-6">
-                <h5 className="text-start mt-4">Test hosted by Mohit kumar</h5>
+                <h5 className="text-start mt-4">Test hosted by {name}</h5>
               </div>
               <div className="col-4 ms-auto">
                 <img
@@ -135,14 +155,10 @@ function ShortTermDetailspost() {
             <div className="row">
               <span className="text-start">
                 <h3>Description</h3>
-                {data.map((item: any) => {
-                  return (
-                    <>
-                      <p className="text-start mb-0">{item.description}</p>
+              
+                      <p className="text-start mb-0">{description}</p>
                       {/* <h3>{item.description}</h3> */}
-                    </>
-                  );
-                })}
+                  
               </span>
               {/* <p className="text-start mb-0">Lorem ipsum dolor sit amet.</p>
               <p className="text-start">
@@ -211,7 +227,7 @@ function ShortTermDetailspost() {
                 </div>
                 <div className="row mt-2">
                   <div className="col-4 me-auto text-start">30 x 1 nights</div>
-                  <div className="col-3 ms-auto">$ 30</div>
+                  <div className="col-3 ms-auto">${price}</div>
                 </div>
                 <div className="row mt-2">
                   <div className="col-3 me-auto">Discount</div>
@@ -238,13 +254,14 @@ function ShortTermDetailspost() {
         {/* Amenities  */}
         <div className="row">
           <h3>Amenities</h3>
+          {/* <div className="col-3"> */}
+    {/* <span className=" ms-2"> */}
+      {amenites.map((item:any)=>{return(<div className="col-3 mt-2"><img src={horseone} alt="" />{item} <br></br></div>)})}
+      {/* </span> */}
+          {/* </div> */}
           <div className="col-3">
-            <img src={horseone} alt="" />
-            <span className="ms-2">Lorem ipsum dolor sit.</span>
-          </div>
-          <div className="col-3">
-            <img src={horseone} alt="" />
-            <span className="ms-2">Lorem ipsum dolor sit.</span>
+            {/* <img src={horseone} alt="" />
+            <span className="ms-2">Lorem ipsum dolor sit.</span> */}
           </div>
         </div>
         <hr />
@@ -283,9 +300,9 @@ function ShortTermDetailspost() {
                   className="mt-4 me-5"
                 />
               </div>
-              <div className="col-7 mt-2">
-                <p className="font mb-0 ">{data.map((item:any)=>{return(<>{item.title} </>)})}Hosted by mohit kumar</p>
-                <small>Join on 21 Sep 2021 </small>
+              <div className="col-6 mt-2">
+                <p className="font mb-0 ">{title} Hosted by {name}</p>
+                <small>{joindate} </small>
               </div>
             </div>
           </div>
@@ -308,21 +325,15 @@ function ShortTermDetailspost() {
         </div>
         <hr />
         <div className="row">
-          <div className="col-4 font me-auto">Mohit kumar listings</div>
+          <div className="col-4 font me-auto mt-2 mb-3"><b>{name} listings</b></div>
           <div className="col-3">
             <button className="btn btn-success ms-auto">View Listings</button>
           </div>
         </div>
-        <div className="row mt-4">
-        {data.map((item: any) => {
-            return (
-              <>
-              {/* <userContext.Provider value={data}>
-<ShortTermDetailspost/>
-              </userContext.Provider> */}
+     <div>
                 <div className="col-4">
                   <img
-                    src={`${imageurl}${item.cover_photo}`}
+                   src={`${imageurl}${list}`}
                     alt=""
                     className="image-fluid"
                     height="290px"
@@ -332,11 +343,9 @@ function ShortTermDetailspost() {
                   <br></br>
                   <br></br>
                
-                  <div className="col-3">52</div>
+                 
                 </div>
-              </>
-            );
-          })}
+             
           {/* <div className="col-4">
             <img
               src="https://a-z-animals.com/media/horse-3.jpg"

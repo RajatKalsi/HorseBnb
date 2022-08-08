@@ -270,22 +270,28 @@ function Horsebnbindex() {
             {/* </Link> */}
             {/* <Link to=""> */}
             <div className="col-4">
+            <Link to="/shorttermstalls">{""}
               <img
                 src="https://www.nobroker.in/blog/wp-content/uploads/2022/02/7-running-horses-vastu.jpg"
                 alt=""
                 height="200px"
                 width="350px"
               />
+              </Link>
+              <Link to="/shorttermstalls">
               <div className="row shadow">
                 <div className="col-5">
+              
                   <p className="mt-2 ">
                     <b>Monthly Board</b>
                   </p>
+                 
                 </div>
                 <div className="col-3 mt-2 offset-4">
                   <i className="bi bi-arrow-right"></i>
                 </div>
               </div>
+              </Link>
             </div>
             {/* </Link> */}
             <div className="col-4">

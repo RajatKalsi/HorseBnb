@@ -67,8 +67,11 @@ const Auth = {
   getprofileapi: (info, header) => requests.get("/listings/query?pub_type=1&perPage=8&page=1", info),
   getListing: (info) => requests.get("/listings/query?perPage=5&page=2&bounds=30&pub_type=1&start=1&end=5", info),
   hostListing: (info) => requests.get("/host/listing?host_id=768&perPage=3&page=0", info),
-  showlistingid: (info, id) => requests.get(`/listings/show?id=${id}`, info),
+  showlistingid: (id) => requests.get(`/own_listings/show?id=${id}`),
+  getMonthlyList: (info) => requests.get("/listings/query?perPage=20&page=1&pub_type=2", info)
 };
+
+// const getMonthlyList:()=>requests.get("")
 
 // const Auth = {
 //   login: (info) => requests.post("Admin/login", info),
