@@ -9,10 +9,11 @@ import Footer from "./Footer";
 import Modals from "./Modals";
 import SignupHeader from "./SignupHeader";
 import Header from "./Header";
-import { Link } from "react-router-dom";
+import { Link, useMatch } from "react-router-dom";
 import AfterloginModal from "./AfterloginHeader";
 import AfterloginHeader from "./AfterloginHeader";
 import henceforthApi from "./utils/henceforthApi";
+// import { NULL } from "sass";
 // import Modals from "./Modals";
 
 function Horsebnbindex() {
@@ -20,7 +21,13 @@ function Horsebnbindex() {
   const [monthlyShow, setMonthlyShow] = useState(false);
   const [horseexperienceShow, setHorseexperienceShow] = useState(false);
   const [showHeader, setShowHeader] = useState(true);
-  const [data, setData] = useState([] as any);
+  const [shortTerm, setShortTerm] = useState([] as any);
+  const[monthlyTerm,setMonthlyTerm]=useState([])
+  const[guestTerm,setGuestTerm]=useState([])
+  const[shortTermType,setShorttermType]=useState()
+  const[monthlyTermType,setMonthlyTermType]=useState(
+
+  )
 
   const ShorttermPost = () => {
     setMonthlyShow(false);
@@ -42,14 +49,40 @@ function Horsebnbindex() {
     // setData(res.data);
     // console.log(res.data);
   };
+  // const ShortTermList = async () => {
+  //   let res = await henceforthApi.Auth.getListing();
+  //   console.log(res.data);
+  //   setData(res.data);
+  // };
+
+  henceforthApi.setToken(localStorage.getItem("token"));
   const ShortTermList = async () => {
-    let res = await henceforthApi.Auth.getListing();
-    console.log(res.data);
-    setData(res.data);
+    let res = await henceforthApi.Auth.getShortListing(8,1);
+    // console.log(res.data);
+    setShortTerm(res.data);
+    setShorttermType(res.data)
+    
   };
+  const MonthlyList= async()=>{
+    let res=await henceforthApi.Auth.getMonthlyList(8,2);
+   setMonthlyTerm(res.data)
+   setMonthlyTermType(res.data)
+     console.log(res)
+   }
+   const GuestAccomodationList= async()=>{
+    let res=await henceforthApi.Auth.getMonthlyList(8,4);
+   setGuestTerm(res.data)
+     console.log(res)
+   }
+  let imageurl =
+  "https://horsebnb.s3.us-east-2.amazonaws.com/Uploads/Images/Small/";
+
   useEffect(() => {
-    // GetProfileApi();
-    ShortTermList();
+  
+  ShortTermList();
+
+  MonthlyList();
+    GuestAccomodationList()
   }, []);
 
   return (
@@ -330,13 +363,15 @@ function Horsebnbindex() {
               <h3>HorseBnB</h3>
             </div>
             <div className="col-12  text-start ms-5 mt-3">
-              <button className="btn border-0 bg-white">About Us</button>
+         <Link to="/aboutus" className="text-dark link-style"> 
+         <button className="btn border-0 bg-white">About Us</button>
+         </Link>
             </div>
           </div>
         </div>
       </div>
 
-      {/* 4 images in one row section  */}
+      {/*  Short term Listing*/}
       <div className="container mt-5">
         <div className="row">
           <div className="col-12 text-start ms-3 ">
@@ -351,7 +386,52 @@ function Horsebnbindex() {
             </p>
           </div>
         </div>
-        <Cardscomponent />
+        <div className="row" >
+          {
+            shortTerm.map((item:any,index:number)=>{
+              {console.log(item.attributes.publicData.type)}
+              // setShorttermType(item.attributes.publicData.type)
+              return(
+                <>
+                  <div className="col-3 mt-4" key={index}>
+                  <Link to={`/shorttermdetailpost/${item.id.uuid}`} className="link-style">
+          <div className="card text-dark" style={{ width: "15rem" ,height:"370px"}}>
+            <img
+              src={`${imageurl}${item.attributes?.publicData?.cover_photo?.url}`}
+              className="card-img-top"
+              alt="..."
+              height="240px"
+              width="400px"
+            />
+            <div className="card-body">
+           
+            <p className="card-text">
+            <b>{item.attributes.title}</b>
+             
+              </p>
+              <p className="card-text">
+              ${item.attributes.price.amount}/Night
+              </p>
+              <p className="card-text">
+              {item.attributes?.description?.length > 100
+                            ? `${item.attributes?.description?.slice(
+                                0,
+                                100
+                              )}...`
+                            : item.attributes?.description}
+              </p>
+            </div>
+          </div>
+          </Link>
+        </div>
+                
+                </>
+              )
+            })
+          }
+      
+        </div>
+        {/* <Cardscomponent /> */}
         <p className="text-start mt-5 text-success">
           Show all short term accomodation
           <i className="bi bi-chevron-compact-right"></i>
@@ -367,15 +447,127 @@ function Horsebnbindex() {
         </div>
       </div>
       <div className="container">
-        <Cardscomponent />
+      <div className="row mt-4">
+          <div className="col-12 text-start ms-3 ">
+            <b>
+              <p className="mb-0">Overnight and Monthly terms stalls</p>
+            </b>
+          </div>
+          <div className="col-12 text-start ms-3 mt-1">
+            <p>
+              travelling with your horse ?Find overnight Accomodations for you
+              and tour horse
+            </p>
+          </div>
+        </div>
+      <div className="row" >
+          {
+            monthlyTerm.map((item:any,index:number)=>{
+              // setMonthlyTermType(item.attributes.publicData.type)
+              return(
+                <>
+                  <div className="col-3 mt-4" key={index}>
+                    <Link to={`/shorttermdetailpost/${item.id.uuid}`} className="link-style">
+          <div className="card text-dark link-style " style={{ width: "15rem" ,height:"370px"}}>
+            <img
+              src={`${imageurl}${item.attributes?.publicData?.cover_photo?.url}`}
+              className="card-img-top"
+              alt="..."
+              height="240px"
+              width="400px"
+            />
+            <div className="card-body">
+           
+            <p className="card-text">
+            <b>{item.attributes.title}</b>
+             
+              </p>
+              <p className="card-text">
+              ${item.attributes.price.amount}/Night
+              </p>
+              <p className="card-text">
+              {item.attributes?.description?.length > 100
+                            ? `${item.attributes?.description?.slice(
+                                0,
+                                100
+                              )}...`
+                            : item.attributes?.description}
+              </p>
+            </div>
+          </div>
+          </Link>
+        </div>
+                
+                </>
+              )
+            })
+          }
+      
+        </div>
+        {/* <Cardscomponent /> */}
         <p className="text-start mt-5 text-success">
           Show all short term accomodation
           <i className="bi bi-chevron-compact-right"></i>
         </p>
       </div>
       {/* Equestrain advanture */}
-      <div>
-        <HorseAdventures />
+      <div className="container">
+      <div className="row">
+          <div className="col-12 text-start ms-3 ">
+            <b>
+              <p className="mb-0">Overnight and Guest Accomodation terms stalls</p>
+            </b>
+          </div>
+          <div className="col-12 text-start ms-3 mt-1">
+            <p>
+              travelling with your horse ?Find overnight Accomodations for you
+              and tour horse
+            </p>
+          </div>
+        </div>
+        <div className="row mb-3">
+          {
+            guestTerm.map((item:any,index:number)=>{
+              return(
+                <>
+                  <div className="col-3 mt-4" key={index}>
+                  <Link to={`/shorttermdetailpost/${item.id.uuid}`} className="link-style">
+          <div className="card text-dark" style={{ width: "15rem" ,height:"370px"}}>
+            <img
+              src={`${imageurl}${item.attributes?.publicData?.cover_photo?.url}`}
+              className="card-img-top"
+              alt="..."
+              height="220px"
+              width="400px"
+            />
+            <div className="card-body">
+           
+            <p className="card-text">
+            <b>{item.attributes.title}</b>
+             
+              </p>
+              <p className="card-text">
+              ${item.attributes.price.amount}/Night
+              </p>
+              <p className="card-text">
+              {item.attributes?.description?.length > 100
+                            ? `${item.attributes?.description?.slice(
+                                0,
+                                40
+                              )}...`
+                            : item.attributes?.description}
+              </p>
+            </div>
+          </div>
+          </Link>
+        </div>
+                </>
+              )
+            })
+          }
+      
+        </div>
+        {/* <HorseAdventures /> */}
       </div>
 
       <Footer />

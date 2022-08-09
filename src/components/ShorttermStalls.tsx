@@ -14,13 +14,13 @@ function ShorttermStalls() {
 
   henceforthApi.setToken(localStorage.getItem("token"));
   const ShortTermList = async () => {
-    let res = await henceforthApi.Auth.getMonthlyList(1);
+    let res = await henceforthApi.Auth.getShortListing(10,1);
     // console.log(res.data);
     setData(res.data);
     
   };
   const MonthlyList= async()=>{
-   let res=await henceforthApi.Auth.getMonthlyList(2);
+   let res=await henceforthApi.Auth.getMonthlyList(15,2);
   setData(res.data)
     console.log(res)
   }

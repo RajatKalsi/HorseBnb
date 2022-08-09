@@ -65,10 +65,12 @@ const Auth = {
   checktrue: (info) => requests.post("/own_listings/update", info),
   priceUpdate: (info) => requests.post("/own_listings/update", info),
   getprofileapi: (info, header) => requests.get("/listings/query?pub_type=1&perPage=8&page=1", info),
-  getListing: (info) => requests.get("/listings/query?perPage=5&page=2&bounds=30&pub_type=1&start=1&end=5", info),
-  hostListing: (info) => requests.get("/host/listing?host_id=768&perPage=3&page=0", info),
+  getShortListing: (perPage, pub_type) => requests.get(`/listings/query?perPage=${perPage}&page=2&bounds=30&pub_type=${pub_type}&start=1&end=5`),
+  hostListing: (info) => requests.get("/host/listing?host_id=768&perPage=3&page=0"),
   showlistingid: (id) => requests.get(`/own_listings/show?id=${id}`),
-  getMonthlyList: (info) => requests.get("/listings/query?perPage=20&page=1&pub_type=2", info)
+  getMonthlyList: (perPage, pub_type) => requests.get(`/listings/query?perPage=${perPage}&page=1&pub_type=${pub_type}`),
+  getGuestAccomodationList: (perPage, pub_type) => requests.get(`/listings/query?perPage=${perPage}&page=1&pub_type=${pub_type}`)
+
 };
 
 // const getMonthlyList:()=>requests.get("")

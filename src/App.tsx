@@ -48,6 +48,7 @@ import CreateTimingstep from "./components/CreateTimingstep";
 import ShorttermStalls from "./components/ShorttermStalls";
 import SearchWithoutMap from "./components/SearchWithoutMap";
 import ShortTermDetailspost from "./components/ShortTermDetailspost";
+import AboutUs from "./components/AboutUs";
 
 function App() {
   return (
@@ -93,6 +94,7 @@ function App() {
       {/* <Header /> */}
       {/* <GoogleMap /> */}
       {/* <ShorttermStalls /> */}
+      {/* <AboutUs/> */}
 
       <Router>
         <Routes>
@@ -135,6 +137,7 @@ function App() {
             element={<HostExperienceLocation />}
           />
           <Route path="/shorttermstalls" element={<ShorttermStalls />} />
+          <Route path="/aboutus" element={<AboutUs/>} />
         </Routes>
         {/* <HostanExperienceStep1/> */}
         {/* <HostExperienceGroup/> */}
