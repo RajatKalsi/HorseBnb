@@ -4,18 +4,22 @@ import on from "../images/other/on.png";
 import off from "../images/other/off.png";
 import Map from "./Mapfull";
 import henceforthApi from "./utils/henceforthApi";
-import { Link,useMatch } from "react-router-dom";
+import { Link, useMatch } from "react-router-dom";
 
 function ShorttermStalls() {
   const [data, setData] = useState([]);
   const [texts, setTexts] = useState(true);
-  const[monthlydata,setMonthlyData]=useState("")
-  const match=useMatch("/shorttermdetailpost/:id")
+  const[monthlydata,setMonthlyData]=useState("");
+  const match = useMatch("/shorttermStall/:type")
+  const match1=useMatch("/shorttermdetailpost/:id")
+ 
+  // const match2=useMatch("/shorttermStall/:type")
 
   henceforthApi.setToken(localStorage.getItem("token"));
   const ShortTermList = async () => {
     let res = await henceforthApi.Auth.getShortListing(10,1);
     // console.log(res.data);
+  
     setData(res.data);
     
   };
@@ -24,18 +28,33 @@ function ShorttermStalls() {
   setData(res.data)
     console.log(res)
   }
+
+
   const ellipsis = (text: String, count: number) => {
     return text && count
       ? text.slice(0, count) + (text.length > count ? "..." : "")
       : "";
   };
 
+
+
+  useEffect(() => {
+    
+    MonthlyList()
+    // ShortTermList()
+   
+    
+  }, [match?.params.type == "2"]);
   useEffect(() => {
     // GetProfileApi();
-    MonthlyList()
+    // MonthlyList()
     ShortTermList()
+  
     
-  }, []);
+  }, [match?.params.type == "1"]);
+ 
+  console.log(match?.params.type)
+ 
   // useEffect(()=>{
   //   ShortTermList();
   // })

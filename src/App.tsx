@@ -136,7 +136,7 @@ function App() {
             path="/hostexperiencelocation"
             element={<HostExperienceLocation />}
           />
-          <Route path="/shorttermstalls" element={<ShorttermStalls />} />
+          <Route path="shorttermstalls/:type" element={<ShorttermStalls />} />
           <Route path="/aboutus" element={<AboutUs/>} />
         </Routes>
         {/* <HostanExperienceStep1/> */}

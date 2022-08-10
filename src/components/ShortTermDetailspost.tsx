@@ -21,6 +21,8 @@ function ShortTermDetailspost() {
   const[title,setTitle]=useState("")
   const[amenites,setAmenities]=useState([])
   const match=useMatch("/shorttermdetailpost/:id");
+  
+  console.log(match?.params.id)
   // const userContext=createContext()
   const HostListing = async () => {
     let res = await henceforthApi.Auth.hostListing();

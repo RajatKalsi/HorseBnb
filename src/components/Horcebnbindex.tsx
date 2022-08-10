@@ -13,6 +13,7 @@ import { Link, useMatch } from "react-router-dom";
 import AfterloginModal from "./AfterloginHeader";
 import AfterloginHeader from "./AfterloginHeader";
 import henceforthApi from "./utils/henceforthApi";
+import { match } from "assert";
 // import { NULL } from "sass";
 // import Modals from "./Modals";
 
@@ -24,8 +25,8 @@ function Horsebnbindex() {
   const [shortTerm, setShortTerm] = useState([] as any);
   const[monthlyTerm,setMonthlyTerm]=useState([])
   const[guestTerm,setGuestTerm]=useState([])
-  const[shortTermType,setShorttermType]=useState()
-  const[monthlyTermType,setMonthlyTermType]=useState(
+  const[shortTermType,setShorttermType]=useState([])
+  const[monthlyTermType,setMonthlyTermType]=useState([]
 
   )
 
@@ -276,8 +277,10 @@ function Horsebnbindex() {
           {/* <Link></Link> */}
           <div className="row">
             {/* <Link to="/shorttermstalls"> */}
-            <div className="col-4">
-              <Link to="/shorttermstalls">
+           
+            
+                     <div className="col-4">
+                         <Link to="/shorttermstalls/1">
                 {" "}
                 <img
                   src="https://a-z-animals.com/media/horse-3.jpg"
@@ -287,7 +290,7 @@ function Horsebnbindex() {
                 />
               </Link>
               <div className="row shadow">
-                <Link to="/shorttermstalls">
+                <Link to="/shorttermstalls/1" className="text-dark link-style">
                   {" "}
                   <div className="col-5">
                     <p className="mt-2">
@@ -300,10 +303,13 @@ function Horsebnbindex() {
                 </Link>
               </div>
             </div>
+                
+             
+            
             {/* </Link> */}
             {/* <Link to=""> */}
             <div className="col-4">
-            <Link to="/shorttermstalls">{""}
+            <Link to="/shorttermstalls/2">{""}
               <img
                 src="https://www.nobroker.in/blog/wp-content/uploads/2022/02/7-running-horses-vastu.jpg"
                 alt=""
